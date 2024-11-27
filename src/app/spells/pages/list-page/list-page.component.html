@@ -1,0 +1,16 @@
+<spell-filters></spell-filters>
+
+<div class="mt-4 flex flex-column gap-4"
+     *ngIf="spells; else loading">
+    <div *ngFor="let spell of spells">
+        <spell-card [spell]="spell"></spell-card>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="flex justify-content-center mt-8">
+        <div class="justify-content-center">
+            <p>En construcción</p>
+        </div>
+    </div>
+</ng-template>
