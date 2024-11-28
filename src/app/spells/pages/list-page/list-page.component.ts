@@ -15,7 +15,7 @@ export class ListPageComponent implements OnInit {
 
 	spellFilters: SpellFilters = {
 		pageNumber: 0,
-		pageSize: 10,
+		pageSize: 20,
 		name: '',
 		school: '',
 		level: '',

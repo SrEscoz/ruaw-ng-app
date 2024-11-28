@@ -46,4 +46,13 @@ export class SpellFiltersComponent implements OnInit {
 		this.filtersChanged.emit(filters);
 	}
 
+	onClear(): void {
+		this.nameFilter = '';
+		this.schoolFilter = '';
+		this.levelFilter = '';
+		this.classFilter = '';
+
+		this.onSearch();
+	}
+
 }
