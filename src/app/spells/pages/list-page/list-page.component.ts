@@ -16,6 +16,10 @@ export class ListPageComponent implements OnInit {
 	spellFilters: SpellFilters = {
 		pageNumber: 0,
 		pageSize: 10,
+		name: '',
+		school: '',
+		level: '',
+		class: ''
 	};
 
 	constructor(private spellsService: SpellsService) { }
@@ -31,11 +35,15 @@ export class ListPageComponent implements OnInit {
 			});
 	}
 
+	onFiltersChange(filters: SpellFilters): void {
+		this.spellFilters = {...this.spellFilters, ...filters, pageNumber: 0};
+		this.loadSpells();
+	}
+
 	onPageChange(event: any): void {
 		this.spellFilters.pageNumber = event.first / event.rows;
 		this.spellFilters.pageSize = event.rows;
 
-		this.spellRespnse.content = [];
 		this.loadSpells();
 	}
 

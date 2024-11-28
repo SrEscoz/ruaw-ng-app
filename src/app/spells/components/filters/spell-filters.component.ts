@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SpellsService} from '../../services/spells.service';
+import {SpellFilters} from '../../interfaces/spells.interface';
 
 @Component({
 	selector: 'spell-filters',
@@ -10,9 +11,17 @@ import {SpellsService} from '../../services/spells.service';
 })
 export class SpellFiltersComponent implements OnInit {
 
+	@Output()
+	filtersChanged = new EventEmitter<SpellFilters>();
+
 	classItems: string[] = [];
 	schoolsItems: string[] = [];
 	levelItems: string[] = ['Truco', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+	nameFilter: string = '';
+	schoolFilter: string = '';
+	levelFilter: string = '';
+	classFilter: string = '';
 
 	constructor(private spellsService: SpellsService) {}
 
@@ -22,6 +31,19 @@ export class SpellFiltersComponent implements OnInit {
 
 		this.spellsService.getSchools()
 			.subscribe(schools => {this.schoolsItems = schools;});
+	}
+
+	onSearch(): void {
+		const filters: SpellFilters = {
+			pageNumber: 0,
+			pageSize: 0,
+			name: this.nameFilter,
+			school: this.schoolFilter,
+			level: this.levelFilter === 'Truco' ? '0' : this.levelFilter,
+			class: this.classFilter,
+		};
+
+		this.filtersChanged.emit(filters);
 	}
 
 }

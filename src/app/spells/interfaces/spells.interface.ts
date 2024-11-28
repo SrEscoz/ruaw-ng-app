@@ -31,5 +31,5 @@ export interface SpellFilters {
 	school?: string;
 	class?: string;
 	name?: string;
-	level?: number;
+	level?: string;
 }

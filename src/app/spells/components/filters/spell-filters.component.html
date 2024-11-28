@@ -6,6 +6,8 @@
                    placeholder="Búsqueda por nombre"
                    variant="filled"
                    class="w-full"
+                   [disabled]="true"
+                   [(ngModel)]="nameFilter"
             />
         </div>
 
@@ -16,6 +18,7 @@
                     placeholder="Escuela de magia"
                     variant="filled"
                     [style]="{'width':'100%'}"
+                    [(ngModel)]="schoolFilter"
             />
         </div>
 
@@ -26,6 +29,7 @@
                     placeholder="Nivel"
                     variant="filled"
                     [style]="{'width':'100%'}"
+                    [(ngModel)]="levelFilter"
             />
         </div>
 
@@ -38,13 +42,15 @@
                     variant="filled"
                     class="full-clumn-width"
                     [style]="{'width':'100%'}"
+                    [(ngModel)]="classFilter"
             />
         </div>
 
         <!-- Boton de busqueda -->
         <div class="col-2">
             <p-button [outlined]="true"
-                      styleClass="full-width-button">
+                      styleClass="full-width-button"
+                      (onClick)="onSearch()">
                 Buscar
             </p-button>
         </div>

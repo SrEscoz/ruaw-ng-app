@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PrimeNgModule} from './prime-ng/prime-ng.module';
 import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
 	declarations: [
@@ -16,7 +17,8 @@ import {HttpClientModule} from '@angular/common/http';
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		HttpClientModule,
-		PrimeNgModule
+		PrimeNgModule,
+		FormsModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]

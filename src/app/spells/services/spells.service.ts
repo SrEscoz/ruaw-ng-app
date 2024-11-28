@@ -14,7 +14,30 @@ export class SpellsService {
 	constructor(private http: HttpClient) { }
 
 	public getSpells(filters: SpellFilters): Observable<SpellResponse> {
-		return this.http.get<SpellResponse>(`${this.baseUrl}/spells?page=${filters.pageNumber}&size=${filters.pageSize}`);
+		let params: any = {
+			page: filters.pageNumber,
+			size: filters.pageSize
+		};
+
+		if (filters.name) {
+			params.name = filters.name;
+		}
+
+		if (filters.school) {
+			params.school = filters.school;
+		}
+
+		if (filters.level) {
+			params.level = filters.level;
+		}
+
+		if (filters.class) {
+			params.className = filters.class;
+		}
+
+		console.log(filters);
+
+		return this.http.get<SpellResponse>(`${this.baseUrl}/spells`, {params});
 	}
 
 	public getSchools(): Observable<string[]> {
