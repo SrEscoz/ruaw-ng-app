@@ -1,16 +1,25 @@
 <spell-filters></spell-filters>
 
-<div class="mt-4 flex flex-column gap-4"
-     *ngIf="spells; else loading">
-    <div *ngFor="let spell of spells">
-        <spell-card [spell]="spell"></spell-card>
+<div *ngIf="spells; else loading" class="mb-4">
+    <div class="my-4 flex flex-column gap-4">
+        <div *ngFor="let spell of spells">
+            <spell-card [spell]="spell"></spell-card>
+        </div>
     </div>
+
+    <p-paginator [rows]="spellRespnse.pageSize"
+                 [totalRecords]="spellRespnse.totalElements"
+                 [first]="first"
+                 [rowsPerPageOptions]="[10, 20, 30]"
+                 [showPageLinks]="true"
+                 (onPageChange)="onPageChange($event)"
+    />
 </div>
 
 <ng-template #loading>
     <div class="flex justify-content-center mt-8">
         <div class="justify-content-center">
-            <p>En construcción</p>
+            <p-progressSpinner ariaLabel="loading"/>
         </div>
     </div>
 </ng-template>

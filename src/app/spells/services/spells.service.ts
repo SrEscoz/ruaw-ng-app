@@ -14,7 +14,7 @@ export class SpellsService {
 	constructor(private http: HttpClient) { }
 
 	public getSpells(filters: SpellFilters): Observable<SpellResponse> {
-		return this.http.get<SpellResponse>(`${this.baseUrl}/spells`);
+		return this.http.get<SpellResponse>(`${this.baseUrl}/spells?page=${filters.pageNumber}&size=${filters.pageSize}`);
 	}
 
 	public getSchools(): Observable<string[]> {

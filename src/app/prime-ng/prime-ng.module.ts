@@ -5,6 +5,8 @@ import {InputTextModule} from 'primeng/inputtext';
 import {FloatLabelModule} from 'primeng/floatlabel';
 import {DropdownModule} from 'primeng/dropdown';
 import {PanelModule} from 'primeng/panel';
+import {PaginatorModule} from 'primeng/paginator';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 
 @NgModule({
@@ -16,6 +18,8 @@ import {PanelModule} from 'primeng/panel';
 		DropdownModule,
 		ButtonModule,
 		PanelModule,
+		PaginatorModule,
+		ProgressSpinnerModule
 	]
 })
 export class PrimeNgModule {
