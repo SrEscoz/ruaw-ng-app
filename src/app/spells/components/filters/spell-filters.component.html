@@ -1,1 +1,56 @@
-<p>En construcción</p>
+<p-card>
+    <p class="mb-4 search-title">Buscar conjuros</p>
+
+    <div class="grid">
+
+        <!-- Filtro por Nombre -->
+        <div class="col-4">
+            <input type="text" pInputText
+                   placeholder="Búsqueda por nombre"
+                   variant="filled"
+                   class="w-full"
+            />
+        </div>
+
+        <!-- Filtro por Escuela Mágica -->
+        <div class="col-2">
+            <p-dropdown
+                    [options]="schoolsItems"
+                    placeholder="Escuela de magia"
+                    variant="filled"
+                    [style]="{'width':'100%'}"
+            />
+        </div>
+
+        <!-- Filtro por Nivel -->
+        <div class="col-2">
+            <p-dropdown
+                    [options]="levelItems"
+                    placeholder="Nivel"
+                    variant="filled"
+                    [style]="{'width':'100%'}"
+            />
+        </div>
+
+
+        <!-- Filtro por Clase -->
+        <div class="col-2">
+            <p-dropdown
+                    [options]="classItems"
+                    placeholder="Clase"
+                    variant="filled"
+                    class="full-clumn-width"
+                    [style]="{'width':'100%'}"
+            />
+        </div>
+
+        <!-- Boton de busqueda -->
+        <div class="col-2">
+            <p-button [outlined]="true"
+                      styleClass="full-width-button">
+                Buscar
+            </p-button>
+        </div>
+
+    </div>
+</p-card>

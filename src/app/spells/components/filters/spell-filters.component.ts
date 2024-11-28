@@ -6,13 +6,13 @@ import {SpellsService} from '../../services/spells.service';
 	standalone: false,
 
 	templateUrl: './spell-filters.component.html',
-	styleUrl: './spell-filters.component.css'
+	styles: ``
 })
 export class SpellFiltersComponent implements OnInit {
 
 	classItems: string[] = [];
 	schoolsItems: string[] = [];
-	levelItems: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+	levelItems: string[] = ['Truco', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
 	constructor(private spellsService: SpellsService) {}
 
