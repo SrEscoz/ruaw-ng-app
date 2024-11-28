@@ -35,8 +35,6 @@ export class SpellsService {
 			params.className = filters.class;
 		}
 
-		console.log(filters);
-
 		return this.http.get<SpellResponse>(`${this.baseUrl}/spells`, {params});
 	}
 
