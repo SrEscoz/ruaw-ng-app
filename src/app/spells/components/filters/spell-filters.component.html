@@ -40,18 +40,20 @@
                     [options]="classItems"
                     placeholder="Clase"
                     variant="filled"
-                    class="full-clumn-width"
                     [style]="{'width':'100%'}"
                     [(ngModel)]="classFilter"
             />
         </div>
 
-        <!-- Boton de busqueda -->
+        <!-- Botón de búsqueda -->
         <div class="col-2">
-            <div class="flex flex-row justify-content-between w-full">
-                <p-button [outlined]="true"
-                          (onClick)="onSearch()"
-                          label="Buscar"/>
+            <div class="flex flex-row justify-content-end gap-2 w-full">
+                <button pButton
+                        [outlined]="true"
+                        class="full-width-button"
+                        (click)="onSearch()"
+                        label="Buscar">
+                </button>
 
                 <p-button [outlined]="true"
                           severity="danger"

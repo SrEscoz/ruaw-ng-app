@@ -1,3 +1,13 @@
 @import "primeicons/primeicons.css";
 @import "primeng/resources/primeng.css";
 @import "primeng/resources/themes/aura-dark-cyan/theme.css";
+
+.px-10rem {
+    padding-left: 10rem !important;
+    padding-right: 10rem !important;
+}
+
+::ng-deep .full-width-button {
+    width: 100%;
+    text-align: center;
+}
