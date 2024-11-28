@@ -7,6 +7,10 @@ const routes: Routes = [
 		loadChildren: () => import ('./spells/spells.module').then(m => m.SpellsModule)
 	},
 	{
+		path: 'admin',
+		loadChildren: () => import ('./admin/admin.module').then(m => m.AdminModule)
+	},
+	{
 		path: '**',
 		redirectTo: 'spells'
 	}
