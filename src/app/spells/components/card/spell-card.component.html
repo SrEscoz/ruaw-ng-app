@@ -1,36 +1,36 @@
-<p-card class="mb-2">
-    <!-- Línea superior: Icono y Nombre -->
-    <div class="flex align-items-center gap-3">
-        <div class="flex align-items-center gap-2">
+<p-card>
+    <!-- Línea inferior: Información estructurada -->
+    <div class="grid align-items-center">
+        <div class="col-1">
             <img
                     src="assets/spell-icon.png"
                     alt="icono del hechizo"
-                    class="mr-2"
-                    style="width: 40px; height: 40px;"
+                    class="h-3rem"
             />
+        </div>
+
+        <div class="col-3">
             <span class="font-bold text-lg truncate">{{ spell.name }}</span>
         </div>
-    </div>
 
-    <!-- Línea inferior: Información estructurada -->
-    <div class="grid mt-2">
-        <div class="col-1">
+        <div class="col">
             <span class="text-primary">{{ spell.level === 0 ? 'Truco' : 'Nv.' + spell.level }}</span>
         </div>
+
         <div class="col">
             <span class="p-text-secondary">{{ spell.magicSchool }}</span>
         </div>
+
         <div class="col">
             <span class="p-text-secondary">{{ spell.castingTime }}</span>
         </div>
+
         <div class="col">
             <span class="p-text-secondary">{{ spell.range }}</span>
         </div>
+
         <div class="col">
             <span class="p-text-secondary">{{ spell.components }}</span>
-        </div>
-        <div class="col">
-            <span class="p-text-secondary">{{ spell.source }}</span>
         </div>
     </div>
 </p-card>
