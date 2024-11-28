@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 
 import {SpellsRoutingModule} from './spells-routing.module';
 import {SpellFiltersComponent} from './components/filters/spell-filters.component';
@@ -21,7 +21,8 @@ import {PrimeNgModule} from '../prime-ng/prime-ng.module';
 	imports: [
 		CommonModule,
 		SpellsRoutingModule,
-		PrimeNgModule
+		PrimeNgModule,
+		NgOptimizedImage
 	]
 })
 export class SpellsModule {
