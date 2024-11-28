@@ -3,13 +3,13 @@ import {SpellsService} from '../../services/spells.service';
 import {Spell, SpellFilters, SpellResponse} from '../../interfaces/spells.interface';
 
 @Component({
-	selector: 'app-list-page',
+	selector: 'spells-list-page',
 	standalone: false,
 
-	templateUrl: './list-page.component.html',
+	templateUrl: './spells-list-page.component.html',
 	styles: ``
 })
-export class ListPageComponent implements OnInit {
+export class SpellsListPageComponent implements OnInit {
 
 	spellRespnse!: SpellResponse;
 
