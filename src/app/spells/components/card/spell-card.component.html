@@ -1,4 +1,4 @@
-<p-card>
+<div class="primeng-card px-3">
     <!-- Línea inferior: Información estructurada -->
     <div class="grid align-items-center">
         <div class="col-1">
@@ -10,11 +10,11 @@
         </div>
 
         <div class="col-3">
-            <span class="font-bold text-lg truncate">{{ spell.name }}</span>
+            <span class="p-text-secondary truncate">{{ spell.name }}</span>
         </div>
 
         <div class="col">
-            <span class="text-primary">{{ spell.level === 0 ? 'Truco' : 'Nv.' + spell.level }}</span>
+            <span class="p-text-secondary">{{ spell.level === 0 ? 'Truco' : 'Nv.' + spell.level }}</span>
         </div>
 
         <div class="col">
@@ -33,4 +33,4 @@
             <span class="p-text-secondary">{{ spell.components }}</span>
         </div>
     </div>
-</p-card>
+</div>
