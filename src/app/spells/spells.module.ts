@@ -8,6 +8,7 @@ import {SpellsLayoutPageComponent} from './pages/layout-page/spells-layout-page.
 import {SpellLevelPipe} from './pipes/spell-level.pipe';
 import {SpellCardComponent} from './components/card/spell-card.component';
 import {PrimeNgModule} from '../prime-ng/prime-ng.module';
+import { SpellImagePipe } from './pipes/spell-image.pipe';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {PrimeNgModule} from '../prime-ng/prime-ng.module';
 		SpellsListPageComponent,
 		SpellsLayoutPageComponent,
 		SpellLevelPipe,
-		SpellCardComponent
+		SpellCardComponent,
+  SpellImagePipe
 	],
 	imports: [
 		CommonModule,
