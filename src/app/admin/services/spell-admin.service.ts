@@ -11,17 +11,10 @@ export class SpellAdminService {
 
 	private baseUrl = environment.baseUrl;
 
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) {
+	}
 
 	public getSpells(filters: SpellFilters): Observable<SpellResponse> {
 		return this.http.get<SpellResponse>(`${this.baseUrl}/spells`);
-	}
-
-	public getSchools(): Observable<string[]> {
-		return this.http.get<string[]>(this.baseUrl + '/metadata/schools');
-	}
-
-	public getClasses(): Observable<string[]> {
-		return this.http.get<string[]>(this.baseUrl + '/metadata/classes');
 	}
 }

@@ -7,6 +7,9 @@ import {DropdownModule} from 'primeng/dropdown';
 import {PanelModule} from 'primeng/panel';
 import {PaginatorModule} from 'primeng/paginator';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {TableModule} from 'primeng/table';
+import {SkeletonModule} from 'primeng/skeleton';
+import {DividerModule} from 'primeng/divider';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 		ButtonModule,
 		PanelModule,
 		PaginatorModule,
-		ProgressSpinnerModule
+		ProgressSpinnerModule,
+		TableModule,
+		SkeletonModule,
+		DividerModule
 	]
 })
 export class PrimeNgModule {

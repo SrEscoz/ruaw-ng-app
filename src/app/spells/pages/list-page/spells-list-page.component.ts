@@ -11,7 +11,7 @@ import {Spell, SpellFilters, SpellResponse} from '../../interfaces/spells.interf
 })
 export class SpellsListPageComponent implements OnInit {
 
-	spellRespnse!: SpellResponse;
+	spellResponse!: SpellResponse;
 
 	spellFilters: SpellFilters = {
 		pageNumber: 0,
@@ -31,7 +31,7 @@ export class SpellsListPageComponent implements OnInit {
 	loadSpells(): void {
 		this.spellsService.getSpells(this.spellFilters)
 			.subscribe(response => {
-				this.spellRespnse = response;
+				this.spellResponse = response;
 			});
 	}
 
@@ -48,7 +48,7 @@ export class SpellsListPageComponent implements OnInit {
 	}
 
 	get spells(): Spell[] | null {
-		return this.spellRespnse ? this.spellRespnse.content : null;
+		return this.spellResponse ? this.spellResponse.content : null;
 	}
 
 	get first(): number {
