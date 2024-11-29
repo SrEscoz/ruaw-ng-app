@@ -10,6 +10,9 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {TableModule} from 'primeng/table';
 import {SkeletonModule} from 'primeng/skeleton';
 import {DividerModule} from 'primeng/divider';
+import {DialogModule} from 'primeng/dialog';
+import {BadgeModule} from 'primeng/badge';
+import {AvatarModule} from 'primeng/avatar';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import {DividerModule} from 'primeng/divider';
 		ProgressSpinnerModule,
 		TableModule,
 		SkeletonModule,
-		DividerModule
+		DividerModule,
+		DialogModule,
+		BadgeModule,
+		AvatarModule
 	]
 })
 export class PrimeNgModule {

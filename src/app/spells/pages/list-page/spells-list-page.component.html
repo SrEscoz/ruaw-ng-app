@@ -3,7 +3,8 @@
 <div *ngIf="spells; else loading" class="mb-4">
     <div class="my-4 flex flex-column gap-4">
         <div *ngFor="let spell of spells">
-            <spell-card [spell]="spell"></spell-card>
+            <spell-card [spell]="spell"
+                        (click)="showSpellDetails(spell)"/>
         </div>
     </div>
 
@@ -23,3 +24,8 @@
         </div>
     </div>
 </ng-template>
+
+<spell-dialog [spell]="selectedSpell"
+              [visible]="visibleDialog"
+              (close)="hideSpellDetails()"
+/>

@@ -12,6 +12,8 @@ import {Spell, SpellFilters, SpellResponse} from '../../interfaces/spells.interf
 export class SpellsListPageComponent implements OnInit {
 
 	spellResponse!: SpellResponse;
+	selectedSpell?: Spell;
+	visibleDialog = false;
 
 	spellFilters: SpellFilters = {
 		pageNumber: 0,
@@ -46,6 +48,17 @@ export class SpellsListPageComponent implements OnInit {
 
 		this.loadSpells();
 	}
+
+	showSpellDetails(spell: Spell): void {
+		this.selectedSpell = spell;
+		this.visibleDialog = true;
+	}
+
+	hideSpellDetails(): void {
+		this.selectedSpell = undefined;
+		this.visibleDialog = false;
+	}
+
 
 	get spells(): Spell[] | null {
 		return this.spellResponse ? this.spellResponse.content : null;

@@ -7,7 +7,9 @@ export class SpellImagePipe implements PipeTransform {
 
 	private base = 'assets/spells-schools/';
 
-	transform(value: string): string {
+	transform(value: string | undefined): string {
+		if (!value) return '';
+
 		return `${this.base}${this.normalize(value)}.png`;
 	}
 
