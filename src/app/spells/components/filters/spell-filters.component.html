@@ -49,14 +49,12 @@
         <div class="col-2">
             <div class="flex flex-row justify-content-end gap-2 w-full">
                 <button pButton
-                        [outlined]="true"
                         class="full-width-button"
                         (click)="onSearch()"
                         label="Buscar">
                 </button>
 
-                <p-button [outlined]="true"
-                          severity="danger"
+                <p-button severity="danger"
                           (onClick)="onClear()"
                           icon="pi pi-trash"/>
             </div>
