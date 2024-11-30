@@ -3,19 +3,25 @@ import {CommonModule} from '@angular/common';
 
 import {AdminRoutingModule} from './admin-routing.module';
 import {AdminLayoutPageComponent} from './pages/layout-page/admin-layout-page.component';
-import {AdminSpellsPageComponent} from './pages/admin-spells-page/admin-spells-page.component';
+import {AdminSpellsPageComponent} from './pages/admin-spells/spells-page/admin-spells-page.component';
 import {PrimeNgModule} from '../prime-ng/prime-ng.module';
+import {AdminAddSpellPageComponent} from './pages/admin-spells/add-spell-page/admin-add-spell-page.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {SpellsModule} from '../spells/spells.module';
 
 
 @NgModule({
 	declarations: [
 		AdminLayoutPageComponent,
-		AdminSpellsPageComponent
+		AdminSpellsPageComponent,
+		AdminAddSpellPageComponent
 	],
 	imports: [
 		CommonModule,
 		AdminRoutingModule,
-		PrimeNgModule
+		PrimeNgModule,
+		ReactiveFormsModule,
+		SpellsModule,
 	]
 })
 export class AdminModule {

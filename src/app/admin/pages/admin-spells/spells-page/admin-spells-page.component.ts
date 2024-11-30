@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Spell, SpellFilters, SpellResponse} from '../../../spells/interfaces/spells.interface';
-import {SpellAdminService} from '../../services/spell-admin.service';
+import {Spell, SpellFilters, SpellResponse} from '../../../../spells/interfaces/spells.interface';
+import {SpellsService} from '../../../../spells/services/spells.service';
 
 @Component({
 	selector: 'app-admin-spells-page',
@@ -15,7 +15,7 @@ export class AdminSpellsPageComponent implements OnInit {
 		class: '', level: '', name: '', pageNumber: 0, pageSize: 300, school: ''
 	};
 
-	constructor(private spellAdminService: SpellAdminService) {
+	constructor(private spellsService: SpellsService) {
 	}
 
 	ngOnInit(): void {
@@ -23,7 +23,7 @@ export class AdminSpellsPageComponent implements OnInit {
 	}
 
 	loadSpells(): void {
-		this.spellAdminService.getSpells(this.spellFilters)
+		this.spellsService.getSpells(this.spellFilters)
 			.subscribe(response => {
 				this.spellResponse = response;
 			});

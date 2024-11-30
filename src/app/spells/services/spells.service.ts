@@ -45,4 +45,8 @@ export class SpellsService {
 	public getClasses(): Observable<string[]> {
 		return this.http.get<string[]>(this.baseUrl + '/metadata/classes');
 	}
+
+	public getSourceBooks(): Observable<string[]> {
+		return this.http.get<string[]>(this.baseUrl + '/metadata/sources');
+	}
 }

@@ -1,0 +1,173 @@
+<p-toast />
+
+<p-card>
+    <!-- Cabecera de la carta -->
+    <ng-template pTemplate="header">
+        <div class="inline-flex align-items-center justify-content-center gap-2 p-3">
+            <p-avatar
+                    [image]="spellForm.get('school')?.value | spellImage"
+                    size="large"
+                    shape="circle"/>
+
+            <span class="font-bold white-space-nowrap">
+                    Añadir un Conjuro
+            </span>
+        </div>
+    </ng-template>
+
+    <!-- Formulario -->
+    <form [formGroup]="spellForm" (ngSubmit)="onSubmit()">
+        <div class="formgrid grid">
+
+            <!-- Nombre del conjuro -->
+            <div class="field col-3">
+                <label for="name">Nombre</label>
+                <input pInputText
+                       id="name"
+                       formControlName="name"
+                       class="w-full">
+            </div>
+
+            <!-- Origen del conjuro -->
+            <div class="field col-3">
+                <label for="source">Origen</label>
+                <p-dropdown id="source"
+                            [options]="sourceItems"
+                            formControlName="source"
+                            [style]="{'width':'100%'}"/>
+            </div>
+
+            <!-- Nivel del conjuro -->
+            <div class="field col-1">
+                <label for="level">Nivel</label>
+                <p-dropdown id="level"
+                            [options]="levelItems"
+                            formControlName="level"
+                            [style]="{'width':'100%'}"/>
+            </div>
+
+            <!-- Escuela del conjuro -->
+            <div class="field col">
+                <label for="school">Escuela de magia</label>
+                <p-dropdown id="school"
+                            [options]="schoolsItems"
+                            formControlName="school"
+                            [style]="{'width':'100%'}"/>
+            </div>
+
+            <!-- Clases del conjuro -->
+            <div class="field col-3">
+                <label for="classes">Listas de conjuros de</label>
+                <p-multiSelect id="classes"
+                               [options]="classItems"
+                               display="chip"
+                               formControlName="classes"
+                               [style]="{'width':'100%'}"/>
+            </div>
+
+            <!-- Componentes -->
+            <div class="field col-12">
+                <label class="mb-3">Componentes</label>
+                <div class="flex gap-3">
+                    <p-checkbox label="Verbal"
+                                formControlName="verbal"
+                                binary="true">
+                    </p-checkbox>
+                    <p-checkbox label="Somático"
+                                formControlName="somatic"
+                                binary="true">
+                    </p-checkbox>
+                    <p-checkbox label="Material"
+                                formControlName="material"
+                                binary="true"
+                                (onChange)="toggleMaterialField($event)">
+                    </p-checkbox>
+                </div>
+            </div>
+
+            <!-- Materiales (solo si se selecciona Material) -->
+            <div class="field col">
+                <label for="materials">Materiales</label>
+                <input pInputText
+                       id="materials"
+                       formControlName="materials"
+                       class="w-full">
+            </div>
+
+            <!-- Tiempo de lanzamiento -->
+            <div class="field col">
+                <label for="castingTime">Tiempo de lanzamiento</label>
+                <input pInputText
+                       id="castingTime"
+                       type="text"
+                       formControlName="castingTime"
+                       class="w-full">
+            </div>
+
+            <!-- Alcance -->
+            <div class="field col">
+                <label for="range">Alcance</label>
+                <input pInputText
+                       id="range"
+                       type="text"
+                       formControlName="range"
+                       class="w-full">
+            </div>
+
+            <!-- Duración -->
+            <div class="field col">
+                <label for="duration">Duración</label>
+                <input pInputText
+                       id="duration"
+                       type="text"
+                       formControlName="duration"
+                       class="w-full">
+            </div>
+
+            <!-- Ritual y Concentración -->
+            <div class="field col-12 flex gap-4 align-items-center">
+                <p-checkbox inputId="ritual"
+                            binary="true"
+                            formControlName="ritual"
+                            label="Ritual">
+                </p-checkbox>
+
+                <p-checkbox inputId="concentration"
+                            binary="true"
+                            formControlName="concentration"
+                            label="Concentración">
+                </p-checkbox>
+            </div>
+
+            <!-- Descripción -->
+            <div class="field col-12">
+                <label for="description">Descripción</label>
+                <textarea id="description"
+                          rows="5"
+                          cols="30"
+                          pInputTextarea
+                          formControlName="description"
+                          class="w-full">
+                </textarea>
+            </div>
+
+            <!-- En niveles superiores -->
+            <div class="field col-12">
+                <label for="highLevelsDescription">En niveles superiores</label>
+                <textarea id="highLevelsDescription"
+                          rows="5"
+                          cols="30"
+                          pInputTextarea
+                          formControlName="highLevelsDescription"
+                          class="w-full">
+                </textarea>
+            </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="flex justify-content-end mt-4 gap-2">
+            <button pButton type="button" label="Cancelar" icon="pi pi-times" class="p-button-secondary"></button>
+            <button pButton type="submit" label="Guardar" icon="pi pi-save"></button>
+        </div>
+    </form>
+</p-card>

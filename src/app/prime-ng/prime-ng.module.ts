@@ -13,6 +13,12 @@ import {DividerModule} from 'primeng/divider';
 import {DialogModule} from 'primeng/dialog';
 import {BadgeModule} from 'primeng/badge';
 import {AvatarModule} from 'primeng/avatar';
+import {BreadcrumbModule} from 'primeng/breadcrumb';
+import {CheckboxModule} from 'primeng/checkbox';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {ToastModule} from 'primeng/toast';
+import {MessageService} from 'primeng/api';
 
 
 @NgModule({
@@ -31,8 +37,14 @@ import {AvatarModule} from 'primeng/avatar';
 		DividerModule,
 		DialogModule,
 		BadgeModule,
-		AvatarModule
-	]
+		AvatarModule,
+		BreadcrumbModule,
+		CheckboxModule,
+		InputTextareaModule,
+		MultiSelectModule,
+		ToastModule
+	],
+	providers: [MessageService]
 })
 export class PrimeNgModule {
 }
