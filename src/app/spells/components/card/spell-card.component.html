@@ -1,35 +1,42 @@
 <div class="primeng-card px-3">
     <!-- Línea inferior: Información estructurada -->
     <div class="grid align-items-center">
-        <div class="col-1">
+        <!-- Icono de la escuela de magia -->
+        <div class="col-2 md:col-1">
             <img
-                    [src]="spell.magicSchool | spellImage "
+                    [src]="spell.magicSchool | spellImage"
                     alt="icono del hechizo"
                     class="h-3rem"
             />
         </div>
 
-        <div class="col-3">
+        <!-- Nombre del hechizo -->
+        <div class="col md:col-3">
             <span class="p-text-secondary truncate">{{ spell.name }}</span>
         </div>
 
-        <div class="col">
+        <!-- Nivel -->
+        <div class="col-2 md:col">
             <span class="p-text-secondary">{{ spell.level === 0 ? 'Truco' : 'Nv.' + spell.level }}</span>
         </div>
 
-        <div class="col">
+        <!-- Escuela de magia -->
+        <div class="col hidden sm:inline">
             <span class="p-text-secondary">{{ spell.magicSchool }}</span>
         </div>
 
-        <div class="col">
+        <!-- Tiempo de lanzamiento -->
+        <div class="col hidden md:inline">
             <span class="p-text-secondary">{{ spell.castingTime }}</span>
         </div>
 
-        <div class="col">
+        <!-- Alcance -->
+        <div class="col hidden md:inline">
             <span class="p-text-secondary">{{ spell.range }}</span>
         </div>
 
-        <div class="col">
+        <!-- Componentes -->
+        <div class="col hidden lg:inline">
             <span class="p-text-secondary">{{ spell.components }}</span>
         </div>
     </div>
