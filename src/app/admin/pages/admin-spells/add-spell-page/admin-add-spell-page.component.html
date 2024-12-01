@@ -1,6 +1,5 @@
-<p-toast />
-
 <p-card>
+
     <!-- Cabecera de la carta -->
     <ng-template pTemplate="header">
         <div class="inline-flex align-items-center justify-content-center gap-2 p-3">
@@ -66,7 +65,7 @@
             </div>
 
             <!-- Componentes -->
-            <div class="field col-12">
+            <div formGroupName="components" class="field col-12">
                 <label class="mb-3">Componentes</label>
                 <div class="flex gap-3">
                     <p-checkbox label="Verbal"
@@ -166,8 +165,18 @@
 
         <!-- Botones de acción -->
         <div class="flex justify-content-end mt-4 gap-2">
-            <button pButton type="button" label="Cancelar" icon="pi pi-times" class="p-button-secondary"></button>
-            <button pButton type="submit" label="Guardar" icon="pi pi-save"></button>
+            <p-button label="Cancelar"
+                      severity="secondary"
+                      [routerLink]="['/admin/spells/']"
+            />
+
+            <p-button label="Guardar"
+                      type="submit"/>
+
+            <p-button severity="help"
+                      icon="pi pi-plus"/>
         </div>
     </form>
 </p-card>
+
+<p-toast/>

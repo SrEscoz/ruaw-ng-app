@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {SpellsService} from '../../../../spells/services/spells.service';
 import {CheckboxChangeEvent} from 'primeng/checkbox';
 import {MessageService} from 'primeng/api';
+import {Spell} from '../../../../spells/interfaces/spells.interface';
+import {SpellAdminService} from '../../../services/spell-admin.service';
 
 @Component({
 	selector: 'app-admin-add-spell-page',
@@ -21,6 +23,7 @@ export class AdminAddSpellPageComponent implements OnInit {
 	constructor(
 		private fb: FormBuilder,
 		private spellsService: SpellsService,
+		private adminService: SpellAdminService,
 		private messageService: MessageService
 	) {}
 
@@ -52,9 +55,11 @@ export class AdminAddSpellPageComponent implements OnInit {
 			concentration: [false],
 			description: ['', Validators.required],
 			highLevelsDescription: [''],
-			verbal: [false],
-			somatic: [false],
-			material: [false]
+			components: this.fb.group({
+				verbal: [false],
+				somatic: [false],
+				material: [false],
+			}, {validators: this.atLeastOneComponentSelected})
 		});
 	}
 
@@ -73,28 +78,73 @@ export class AdminAddSpellPageComponent implements OnInit {
 		materialsControl?.updateValueAndValidity();
 	}
 
+	atLeastOneComponentSelected(control: AbstractControl): ValidationErrors | null {
+		const components = control.value;
+		const hasAtLeastOne = components.verbal || components.somatic || components.material;
+		return hasAtLeastOne ? null : {noComponentSelected: true};
+	}
+
 	onSubmit() {
 		if (this.spellForm.invalid) {
 			this.spellForm.markAllAsTouched();
 			this.markAllAsDirty();
 
-			this.messageService.add({
-				severity: 'error',
-				summary: 'Error',
-				detail: 'Completa los campos requeridos',
-				life: 3000
-			});
+			this.showErrorToast('Completa todos los campos');
+
+			if (this.spellForm.get('components')?.invalid) {
+				this.showErrorToast('Elige al menos un componente');
+			}
 
 			return;
 		} else {
-			console.log('Es válido');
+			this.adminService.saveSpell(this.buildSpellRequest())
+				.subscribe(spell => {
+					this.messageService.add({});
+				});
 		}
+	}
+
+	buildSpellRequest(): Spell {
+		return {
+			id: 0,
+			name: this.spellForm.get('name')?.value,
+			magicSchool: this.spellForm.get('school')?.value,
+			level: this.spellForm.get('level')?.value,
+			description: this.spellForm.get('description')?.value,
+			castingTime: this.spellForm.get('castingTime')?.value,
+			range: this.spellForm.get('range')?.value,
+			components: this.getComponents(),
+			materials: this.spellForm.get('materials')?.value || null,
+			duration: this.spellForm.get('duration')?.value,
+			ritual: this.spellForm.get('ritual')?.value,
+			concentration: this.spellForm.get('concentration')?.value,
+			highLevelsDescription: this.spellForm.get('highLevelsDescription')?.value || null,
+			source: this.spellForm.get('source')?.value,
+			classes: this.spellForm.get('classes')?.value
+		};
+	}
+
+	getComponents(): string {
+		const components = [];
+		if (this.spellForm.get('components')?.get('verbal')?.value) components.push('V');
+		if (this.spellForm.get('components')?.get('somatic')?.value) components.push('S');
+		if (this.spellForm.get('components')?.get('material')?.value) components.push('M');
+		return components.join(', ');
 	}
 
 	markAllAsDirty(): void {
 		Object.keys(this.spellForm.controls).forEach(controlName => {
 			const control = this.spellForm.get(controlName);
 			control?.markAsDirty();
+		});
+	}
+
+	showErrorToast(message: string): void {
+		this.messageService.add({
+			severity: 'error',
+			summary: 'Error',
+			detail: message,
+			life: 3000
 		});
 	}
 }
