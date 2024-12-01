@@ -1,7 +1,7 @@
 <p-panel header="Filtros" [toggleable]="true">
     <div class="grid">
         <!-- Filtro por Nombre -->
-        <div class="col-4">
+        <div class="col-12 md:col-6 xl:col-4">
             <input type="text" pInputText
                    placeholder="Búsqueda por nombre"
                    variant="filled"
@@ -12,7 +12,7 @@
         </div>
 
         <!-- Filtro por Escuela Mágica -->
-        <div class="col-2">
+        <div class="col-12 md:col-6 xl:col-2">
             <p-dropdown
                     [options]="schoolsItems"
                     placeholder="Escuela de magia"
@@ -23,7 +23,7 @@
         </div>
 
         <!-- Filtro por Nivel -->
-        <div class="col-2">
+        <div class="col-12 md:col-6 xl:col-2">
             <p-dropdown
                     [options]="levelItems"
                     placeholder="Nivel"
@@ -35,7 +35,7 @@
 
 
         <!-- Filtro por Clase -->
-        <div class="col-2">
+        <div class="col-12 md:col-6 xl:col-2">
             <p-dropdown
                     [options]="classItems"
                     placeholder="Clase"
@@ -46,7 +46,7 @@
         </div>
 
         <!-- Botón de búsqueda -->
-        <div class="col-2">
+        <div class="col-offset-6 col-6 xl:col-offset-0 xl:col-2">
             <div class="flex flex-row justify-content-end gap-2 w-full">
                 <button pButton
                         class="full-width-button"
