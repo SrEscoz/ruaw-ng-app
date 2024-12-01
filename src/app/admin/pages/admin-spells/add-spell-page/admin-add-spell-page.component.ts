@@ -5,6 +5,7 @@ import {CheckboxChangeEvent} from 'primeng/checkbox';
 import {MessageService} from 'primeng/api';
 import {Spell} from '../../../../spells/interfaces/spells.interface';
 import {SpellAdminService} from '../../../services/spell-admin.service';
+import {Router} from '@angular/router';
 
 @Component({
 	selector: 'app-admin-add-spell-page',
@@ -24,7 +25,8 @@ export class AdminAddSpellPageComponent implements OnInit {
 		private fb: FormBuilder,
 		private spellsService: SpellsService,
 		private adminService: SpellAdminService,
-		private messageService: MessageService
+		private messageService: MessageService,
+		private router: Router
 	) {}
 
 	ngOnInit(): void {
@@ -84,7 +86,7 @@ export class AdminAddSpellPageComponent implements OnInit {
 		return hasAtLeastOne ? null : {noComponentSelected: true};
 	}
 
-	onSubmit() {
+	onSubmit(saveAddOther: boolean = false) {
 		if (this.spellForm.invalid) {
 			this.spellForm.markAllAsTouched();
 			this.markAllAsDirty();
@@ -95,11 +97,21 @@ export class AdminAddSpellPageComponent implements OnInit {
 				this.showErrorToast('Elige al menos un componente');
 			}
 
-			return;
 		} else {
 			this.adminService.saveSpell(this.buildSpellRequest())
 				.subscribe(spell => {
-					this.messageService.add({});
+					if (spell) {
+
+						this.showSuccessToast('Conjuro añadido con éxito');
+
+						if (saveAddOther)
+							this.spellForm.reset();
+						else
+							setTimeout(() => this.router.navigate(['/admin/spells']), 2000);
+
+					} else {
+						this.showWarningToast('Ya existe un conjuro con ese nombre');
+					}
 				});
 		}
 	}
@@ -136,6 +148,24 @@ export class AdminAddSpellPageComponent implements OnInit {
 		Object.keys(this.spellForm.controls).forEach(controlName => {
 			const control = this.spellForm.get(controlName);
 			control?.markAsDirty();
+		});
+	}
+
+	showWarningToast(message: string): void {
+		this.messageService.add({
+			summary: 'Error',
+			severity: 'warn',
+			detail: message,
+			life: 3000
+		});
+	}
+
+	showSuccessToast(message: string): void {
+		this.messageService.add({
+			severity: 'success',
+			summary: 'Éxito',
+			detail: message,
+			life: 3000
 		});
 	}
 

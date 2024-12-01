@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Spell} from '../../spells/interfaces/spells.interface';
-import {Observable} from 'rxjs';
+import {catchError, Observable, of, throwError} from 'rxjs';
 
 @Injectable({
 	providedIn: 'root'
@@ -14,8 +14,17 @@ export class SpellAdminService {
 	constructor(private http: HttpClient) {
 	}
 
-	saveSpell(spell: Spell): Observable<Spell> {
-		return this.http.post<Spell>(`${this.baseUrl}/spells`, spell);
+	saveSpell(spell: Spell): Observable<Spell | null> {
+		return this.http.post<Spell>(`${this.baseUrl}/spells`, spell)
+			.pipe(
+				catchError((err: HttpErrorResponse) => {
+					if (err.status === 409) {
+						return of(null);
+					}
+
+					return throwError(err);
+				})
+			);
 	}
 
 }
