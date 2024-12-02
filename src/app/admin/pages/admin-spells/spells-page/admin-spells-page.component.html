@@ -1,3 +1,6 @@
+<p-toast/>
+<p-confirmDialog/>
+
 <p-card *ngIf="spellResponse; else loading"
         header="Gestión de Conjuros">
 
@@ -43,7 +46,7 @@
                             type="button"
                             icon="pi pi-trash"
                             class="p-button p-button-text p-button-danger"
-                            (click)="onDeleteSpell(spell.id)">
+                            (click)="onDeleteSpell(spell.id, spell.name)">
                     </button>
                 </td>
             </tr>

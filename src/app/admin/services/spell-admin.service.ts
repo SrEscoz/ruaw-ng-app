@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {Spell} from '../../spells/interfaces/spells.interface';
-import {catchError, Observable, of, throwError} from 'rxjs';
+import {BasicResponse, Spell} from '../../spells/interfaces/spells.interface';
+import {catchError, map, Observable, of, throwError} from 'rxjs';
 
 @Injectable({
 	providedIn: 'root'
@@ -24,6 +24,14 @@ export class SpellAdminService {
 
 					return throwError(err);
 				})
+			);
+	}
+
+	deleteSpell(id: number): Observable<boolean> {
+		return this.http.delete<BasicResponse>(`${this.baseUrl}/spells/${id}`)
+			.pipe(
+				map(() => true),
+				catchError(() => of(false))
 			);
 	}
 

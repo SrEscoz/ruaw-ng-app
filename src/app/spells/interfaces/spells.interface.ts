@@ -24,6 +24,10 @@ export interface SpellResponse {
 	content: Spell[];
 }
 
+export interface BasicResponse {
+	status: number;
+	message: string;
+}
 
 export interface SpellFilters {
 	pageNumber: number;

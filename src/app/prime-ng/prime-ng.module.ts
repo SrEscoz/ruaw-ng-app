@@ -18,7 +18,8 @@ import {CheckboxModule} from 'primeng/checkbox';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {ToastModule} from 'primeng/toast';
-import {MessageService} from 'primeng/api';
+import {ConfirmationService, MessageService} from 'primeng/api';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 
 @NgModule({
@@ -42,9 +43,13 @@ import {MessageService} from 'primeng/api';
 		CheckboxModule,
 		InputTextareaModule,
 		MultiSelectModule,
-		ToastModule
+		ToastModule,
+		ConfirmDialogModule,
 	],
-	providers: [MessageService]
+	providers: [
+		MessageService,
+		ConfirmationService
+	]
 })
 export class PrimeNgModule {
 }
