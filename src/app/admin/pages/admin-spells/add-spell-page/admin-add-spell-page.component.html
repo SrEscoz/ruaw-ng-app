@@ -18,8 +18,8 @@
     <form [formGroup]="spellForm" (ngSubmit)="onSubmit()">
         <div class="formgrid grid">
 
-            <!-- Nombre del conjuro -->
-            <div class="field col-3">
+            <!-- Nombre del conjuro col-3 -->
+            <div class="field col-12 md:col-6 lg:col-5 xl:col-4">
                 <label for="name">Nombre</label>
                 <input pInputText
                        id="name"
@@ -27,8 +27,8 @@
                        class="w-full">
             </div>
 
-            <!-- Origen del conjuro -->
-            <div class="field col-3">
+            <!-- Origen del conjuro col-3 -->
+            <div class="field col-12 md:col-6 lg:col-4 xl:col-3">
                 <label for="source">Origen</label>
                 <p-dropdown id="source"
                             [options]="sourceItems"
@@ -36,8 +36,8 @@
                             [style]="{'width':'100%'}"/>
             </div>
 
-            <!-- Nivel del conjuro -->
-            <div class="field col-1">
+            <!-- Nivel del conjuro col-1 -->
+            <div class="field col-4 lg:col-3 xl:col-2">
                 <label for="level">Nivel</label>
                 <p-dropdown id="level"
                             [options]="levelItems"
@@ -45,8 +45,8 @@
                             [style]="{'width':'100%'}"/>
             </div>
 
-            <!-- Escuela del conjuro -->
-            <div class="field col">
+            <!-- Escuela del conjuro col -->
+            <div class="field col-8 lg:col-6 xl:col">
                 <label for="school">Escuela de magia</label>
                 <p-dropdown id="school"
                             [options]="schoolsItems"
@@ -54,8 +54,8 @@
                             [style]="{'width':'100%'}"/>
             </div>
 
-            <!-- Clases del conjuro -->
-            <div class="field col-3">
+            <!-- Clases del conjuro col-3 -->
+            <div class="field col-12 lg:col-6 xl:col-6">
                 <label for="classes">Listas de conjuros de</label>
                 <p-multiSelect id="classes"
                                [options]="classItems"
@@ -65,7 +65,7 @@
             </div>
 
             <!-- Componentes -->
-            <div formGroupName="components" class="field col-12">
+            <div formGroupName="components" style="border-radius: 4px" class="field col-12 xl:col-6">
                 <label class="mb-3">Componentes</label>
                 <div class="flex gap-3">
                     <p-checkbox label="Verbal"
@@ -84,8 +84,8 @@
                 </div>
             </div>
 
-            <!-- Materiales (solo si se selecciona Material) -->
-            <div class="field col">
+            <!-- Materiales (solo si se selecciona Material) col -->
+            <div class="field col-12 md:col-6 xl:col">
                 <label for="materials">Materiales</label>
                 <input pInputText
                        id="materials"
@@ -93,8 +93,8 @@
                        class="w-full">
             </div>
 
-            <!-- Tiempo de lanzamiento -->
-            <div class="field col">
+            <!-- Tiempo de lanzamiento col -->
+            <div class="field col-12 md:col-6 xl:col">
                 <label for="castingTime">Tiempo de lanzamiento</label>
                 <input pInputText
                        id="castingTime"
