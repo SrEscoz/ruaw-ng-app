@@ -19,6 +19,7 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {ToastModule} from 'primeng/toast';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {TagModule} from 'primeng/tag';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 		MultiSelectModule,
 		ToastModule,
 		ConfirmDialogModule,
+		TagModule
 	]
 })
 export class PrimeNgModule {

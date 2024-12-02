@@ -23,15 +23,19 @@
 
     <!-- Nivel y Escuela -->
     <div *ngIf="spell">
-
-        <span>
-            Nivel {{ spell.level === 0 ? 'Truco' : spell.level }}, {{ spell.magicSchool }}
-        </span>
+        <div class="flex flex-column gap-2">
+            <span class="text-primary">
+                {{ spell.source }}
+            </span>
+            <span>
+                Nivel {{ spell.level === 0 ? 'Truco' : spell.level }}, {{ spell.magicSchool }}
+            </span>
+        </div>
 
         <!-- Badges para Concentración y Ritual -->
         <div class="flex gap-2 my-3">
-            <p-badge *ngIf="spell.concentration" value="Concentración" styleClass="p-mr-2 p-badge-info"></p-badge>
-            <p-badge *ngIf="spell.ritual" value="Ritual" styleClass="p-badge-success"></p-badge>
+            <p-tag *ngIf="spell.concentration" value="Concentración" severity="warning"></p-tag>
+            <p-tag *ngIf="spell.ritual" value="Ritual" severity="success"></p-tag>
         </div>
 
         <!-- Información estructurada -->
@@ -49,15 +53,18 @@
         </div>
 
         <!-- Mejoras en niveles altos -->
-        <div class="mt-3" *ngIf="spell">
-            <p style="white-space: pre-line"><span class="font-bold">En niveles superiores:</span> {{ spell.highLevelsDescription }}</p>
-        </div>
-
-        <!-- Badges para las Clases -->
-        <div class="flex gap-2 my-3">
-            <p-badge *ngFor="let clazz of spell.classes" [value]="clazz" styleClass="p-badge-warning"></p-badge>
+        <div class="mt-3" *ngIf="spell.highLevelsDescription">
+            <p style="white-space: pre-line"><span
+                    class="font-bold">En niveles superiores:</span> {{ spell.highLevelsDescription }}</p>
         </div>
 
     </div>
+
+    <ng-template pTemplate="footer">
+        <!-- Badges para las Clases -->
+        <div *ngIf="spell" class="flex gap-2 my-3">
+            <p-tag *ngFor="let clazz of spell.classes" [value]="clazz"></p-tag>
+        </div>
+    </ng-template>
 
 </p-dialog>
