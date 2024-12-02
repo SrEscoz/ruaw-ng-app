@@ -9,7 +9,7 @@
                     shape="circle"/>
 
             <span class="font-bold white-space-nowrap">
-                    Añadir un Conjuro
+                    {{ isEditMode ? 'Editar Conjuro' : 'Añadir un Conjuro' }}
             </span>
         </div>
     </ng-template>
@@ -170,14 +170,13 @@
                       [routerLink]="['/admin/spells/']"
             />
 
-            <p-button label="Guardar"
+            <p-button label="{{ isEditMode ? 'Actualizar' : 'Guardar' }}"
                       type="submit"/>
 
-            <p-button severity="help"
+            <p-button *ngIf="!isEditMode"
+                      severity="help"
                       icon="pi pi-plus"
                       (onClick)="onSubmit(true)"/>
         </div>
     </form>
 </p-card>
-
-<p-toast/>

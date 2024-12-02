@@ -10,7 +10,8 @@ const routes: Routes = [
 		component: AdminLayoutPageComponent,
 		children: [
 			{path: 'spells', component: AdminSpellsPageComponent, data: {breadcrumb: 'Conjuros'}},
-			{path: 'spells/add', component: AdminAddSpellPageComponent, data: {breadcrumb: 'Añadir Conjuro'},},
+			{path: 'spells/add', component: AdminAddSpellPageComponent, data: {breadcrumb: 'Añadir Conjuro'}},
+			{path: 'spells/edit/:id', component: AdminAddSpellPageComponent, data: {breadcrumb: 'Editar Conjuro'}},
 			{path: '**', redirectTo: 'spells'},
 		]
 	}

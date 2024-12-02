@@ -3,6 +3,7 @@ import {Spell, SpellFilters, SpellResponse} from '../../../../spells/interfaces/
 import {SpellsService} from '../../../../spells/services/spells.service';
 import {SpellAdminService} from '../../../services/spell-admin.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
+import {Router} from '@angular/router';
 
 @Component({
 	selector: 'app-admin-spells-page',
@@ -20,6 +21,7 @@ export class AdminSpellsPageComponent implements OnInit {
 	constructor(
 		private spellsService: SpellsService,
 		private spellAdminService: SpellAdminService,
+		private router: Router,
 		private messageService: MessageService,
 		private confirmationService: ConfirmationService
 	) { }
@@ -70,7 +72,7 @@ export class AdminSpellsPageComponent implements OnInit {
 	}
 
 	onEditSpell(id: number): void {
-
+		this.router.navigate(['/admin/spells/edit/', id]).then();
 	}
 
 	showSuccessToast(message: string): void {

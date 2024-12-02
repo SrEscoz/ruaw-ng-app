@@ -1,4 +1,3 @@
-<p-toast/>
 <p-confirmDialog/>
 
 <p-card *ngIf="spellResponse; else loading"
@@ -18,7 +17,8 @@
             [rows]="15"
             [responsiveLayout]="'scroll'"
             [resizableColumns]="true"
-            [tableStyle]="{'min-width': '50rem'}">
+            [tableStyle]="{'min-width': '50rem'}"
+            styleClass="p-datatable-gridlines p-datatable-striped">
 
         <!-- Definimos las columnas -->
         <ng-template pTemplate="header">
@@ -56,6 +56,13 @@
 
 <ng-template #loading>
     <p-card header="Gestión de Conjuros">
+        <div class="mb-3 flex justify-content-between align-items-center">
+            <p-button label="Nuevo"
+                      icon="pi pi-plus"
+                      severity="success"
+                      [routerLink]="['/admin/spells/add']"
+            />
+        </div>
         <p-table [value]="[1,2,3,5,5]" [tableStyle]="{ 'min-width': '50rem' }">
             <ng-template pTemplate="header">
                 <tr>

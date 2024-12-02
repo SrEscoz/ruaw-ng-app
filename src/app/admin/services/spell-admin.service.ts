@@ -27,6 +27,19 @@ export class SpellAdminService {
 			);
 	}
 
+	updateSpell(spell: Spell): Observable<Spell | null> {
+		return this.http.put<Spell>(`${this.baseUrl}/spells/${spell.id}`, spell)
+			.pipe(
+				catchError((err: HttpErrorResponse) => {
+					if (err.status === 409) {
+						return of(null);
+					}
+
+					return throwError(err);
+				})
+			);
+	}
+
 	deleteSpell(id: number): Observable<boolean> {
 		return this.http.delete<BasicResponse>(`${this.baseUrl}/spells/${id}`)
 			.pipe(

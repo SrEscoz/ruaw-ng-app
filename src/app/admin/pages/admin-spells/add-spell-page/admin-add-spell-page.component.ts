@@ -5,7 +5,7 @@ import {CheckboxChangeEvent} from 'primeng/checkbox';
 import {MessageService} from 'primeng/api';
 import {Spell} from '../../../../spells/interfaces/spells.interface';
 import {SpellAdminService} from '../../../services/spell-admin.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
 	selector: 'app-admin-add-spell-page',
@@ -21,15 +21,25 @@ export class AdminAddSpellPageComponent implements OnInit {
 	schoolsItems: string[] = [];
 	levelItems: number[] = Array.from({length: 10}, (_, i) => i); // Niveles del 0 al 9
 
+	isEditMode: boolean = false;
+	spellId?: number;
+
 	constructor(
 		private fb: FormBuilder,
 		private spellsService: SpellsService,
 		private adminService: SpellAdminService,
 		private messageService: MessageService,
-		private router: Router
+		private router: Router,
+		private route: ActivatedRoute,
 	) {}
 
 	ngOnInit(): void {
+		this.route.params.subscribe(params => {
+			this.spellId = params['id'] ? +params['id'] : undefined;
+			this.isEditMode = !!this.spellId;
+		});
+
+
 		this.initializeForm();
 
 		this.spellsService.getClasses()
@@ -40,12 +50,15 @@ export class AdminAddSpellPageComponent implements OnInit {
 
 		this.spellsService.getSourceBooks()
 			.subscribe(sourceBooks => this.sourceItems = sourceBooks);
+
+		if (this.isEditMode && this.spellId)
+			this.loadSpellData(this.spellId);
 	}
 
 	initializeForm() {
 		this.spellForm = this.fb.group({
 			name: [undefined, Validators.required],
-			source: ['Manual del Jugador', Validators.required],
+			source: ['Player\'s Handbook', Validators.required],
 			level: [0, Validators.required],
 			school: ['Evocación', Validators.required],
 			classes: [undefined, Validators.required],
@@ -62,6 +75,36 @@ export class AdminAddSpellPageComponent implements OnInit {
 				somatic: [false],
 				material: [false],
 			}, {validators: this.atLeastOneComponentSelected})
+		});
+	}
+
+	loadSpellData(id: number): void {
+		this.spellsService.getSpell(id).subscribe(spell => {
+			if (spell) {
+				this.spellForm.patchValue({
+					name: spell.name,
+					source: spell.source,
+					level: spell.level,
+					school: spell.magicSchool,
+					classes: spell.classes,
+					castingTime: spell.castingTime,
+					range: spell.range,
+					materials: spell.materials,
+					duration: spell.duration,
+					ritual: spell.ritual,
+					concentration: spell.concentration,
+					description: spell.description,
+					highLevelsDescription: spell.highLevelsDescription,
+					components: {
+						verbal: spell.components.includes('V'),
+						somatic: spell.components.includes('S'),
+						material: spell.components.includes('M')
+					}
+				});
+			} else {
+				this.showErrorToast('El conjuro no existe');
+				this.router.navigate(['/admin/spells']);
+			}
 		});
 	}
 
@@ -98,27 +141,34 @@ export class AdminAddSpellPageComponent implements OnInit {
 			}
 
 		} else {
-			this.adminService.saveSpell(this.buildSpellRequest())
-				.subscribe(spell => {
-					if (spell) {
+			const request = this.buildSpellRequest();
+			const operation = this.isEditMode
+				? this.adminService.updateSpell(request)
+				: this.adminService.saveSpell(request);
 
-						this.showSuccessToast('Conjuro añadido con éxito');
+			operation.subscribe(spell => {
 
-						if (saveAddOther)
-							this.spellForm.reset();
-						else
-							setTimeout(() => this.router.navigate(['/admin/spells']), 2000);
+				if (spell) {
+					this.showSuccessToast(this.isEditMode
+						? 'Conjuro actualizado con éxito'
+						: 'Conjuro añadido con éxito');
 
+					if (saveAddOther && !this.isEditMode) {
+						this.spellForm.reset();
 					} else {
-						this.showWarningToast('Ya existe un conjuro con ese nombre');
+						this.router.navigate(['/admin/spells']);
 					}
-				});
+
+				} else {
+					this.showWarningToast('Ya existe un conjuro con ese nombre');
+				}
+			});
 		}
 	}
 
 	buildSpellRequest(): Spell {
 		return {
-			id: 0,
+			id: this.spellId ? this.spellId : 0,
 			name: this.spellForm.get('name')?.value,
 			magicSchool: this.spellForm.get('school')?.value,
 			level: this.spellForm.get('level')?.value,

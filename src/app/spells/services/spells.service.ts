@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {SpellFilters, SpellResponse} from '../interfaces/spells.interface';
+import {catchError, Observable, of} from 'rxjs';
+import {Spell, SpellFilters, SpellResponse} from '../interfaces/spells.interface';
 
 @Injectable({
 	providedIn: 'root'
@@ -36,6 +36,15 @@ export class SpellsService {
 		}
 
 		return this.http.get<SpellResponse>(`${this.baseUrl}/spells`, {params});
+	}
+
+	public getSpell(id: number): Observable<Spell | null> {
+		return this.http.get<Spell>(`${this.baseUrl}/spells/${id}`)
+			.pipe(
+				catchError(() => {
+					return of(null);
+				})
+			);
 	}
 
 	public getSchools(): Observable<string[]> {
