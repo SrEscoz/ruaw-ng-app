@@ -36,4 +36,5 @@ export interface SpellFilters {
 	class?: string;
 	name?: string;
 	level?: string;
+	sort?: string;
 }

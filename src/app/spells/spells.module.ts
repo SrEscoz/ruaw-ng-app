@@ -23,7 +23,8 @@ import {SpellDialogComponent} from './components/dialog/spell-dialog.component';
 		SpellDialogComponent
 	],
 	exports: [
-		SpellImagePipe
+		SpellImagePipe,
+		SpellFiltersComponent
 	],
 	imports: [
 		CommonModule,

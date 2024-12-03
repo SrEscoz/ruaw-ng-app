@@ -1,10 +1,10 @@
-<p-panel header="Filtros" [toggleable]="true">
+<p-panel header="Filtros" [toggleable]="true" [collapsed]="true">
     <div class="grid">
         <!-- Filtro por Nombre -->
         <div class="col-12 md:col-6 xl:col-4">
             <input type="text" pInputText
                    placeholder="Búsqueda por nombre"
-                   variant="filled"
+                   variant="outlined"
                    class="w-full"
                    [disabled]="true"
                    [(ngModel)]="nameFilter"
@@ -16,9 +16,11 @@
             <p-dropdown
                     [options]="schoolsItems"
                     placeholder="Escuela de magia"
-                    variant="filled"
+                    variant="outlined"
                     [style]="{'width':'100%'}"
                     [(ngModel)]="schoolFilter"
+                    [showClear]="schoolFilter"
+                    (onChange)="onChange()"
             />
         </div>
 
@@ -27,9 +29,11 @@
             <p-dropdown
                     [options]="levelItems"
                     placeholder="Nivel"
-                    variant="filled"
+                    variant="outlined"
                     [style]="{'width':'100%'}"
                     [(ngModel)]="levelFilter"
+                    [showClear]="levelFilter"
+                    (onChange)="onChange()"
             />
         </div>
 
@@ -39,26 +43,22 @@
             <p-dropdown
                     [options]="classItems"
                     placeholder="Clase"
-                    variant="filled"
+                    variant="outlined"
                     [style]="{'width':'100%'}"
                     [(ngModel)]="classFilter"
+                    [showClear]="classFilter"
+                    (onChange)="onChange()"
             />
         </div>
 
         <!-- Botón de búsqueda -->
         <div class="col-offset-6 col-6 xl:col-offset-0 xl:col-2">
             <div class="flex flex-row justify-content-end gap-2 w-full">
-                <button pButton
-                        class="full-width-button"
-                        (click)="onSearch()"
-                        label="Buscar">
-                </button>
-
-                <p-button severity="danger"
+                <p-button [text]="true"
+                          [raised]="true"
                           (onClick)="onClear()"
-                          icon="pi pi-trash"/>
+                          icon="pi pi-refresh"/>
             </div>
         </div>
-
     </div>
 </p-panel>

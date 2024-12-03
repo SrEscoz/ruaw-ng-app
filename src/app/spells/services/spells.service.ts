@@ -35,6 +35,10 @@ export class SpellsService {
 			params.className = filters.class;
 		}
 
+		if (filters.sort) {
+			params.sort = filters.sort;
+		}
+
 		return this.http.get<SpellResponse>(`${this.baseUrl}/spells`, {params});
 	}
 

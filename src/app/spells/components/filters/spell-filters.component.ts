@@ -18,10 +18,10 @@ export class SpellFiltersComponent implements OnInit {
 	schoolsItems: string[] = [];
 	levelItems: string[] = ['Truco', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-	nameFilter: string = '';
-	schoolFilter: string = '';
-	levelFilter: string = '';
-	classFilter: string = '';
+	nameFilter?: string;
+	schoolFilter?: string;
+	levelFilter?: string;
+	classFilter?: string;
 
 	constructor(private spellsService: SpellsService) {}
 
@@ -33,7 +33,7 @@ export class SpellFiltersComponent implements OnInit {
 			.subscribe(schools => {this.schoolsItems = schools;});
 	}
 
-	onSearch(): void {
+	onChange(): void {
 		const filters: SpellFilters = {
 			pageNumber: 0,
 			pageSize: 0,
@@ -47,12 +47,12 @@ export class SpellFiltersComponent implements OnInit {
 	}
 
 	onClear(): void {
-		this.nameFilter = '';
-		this.schoolFilter = '';
-		this.levelFilter = '';
-		this.classFilter = '';
+		this.nameFilter = undefined;
+		this.schoolFilter = undefined;
+		this.levelFilter = undefined;
+		this.classFilter = undefined;
 
-		this.onSearch();
+		this.onChange();
 	}
 
 }

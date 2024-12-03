@@ -20,6 +20,7 @@ import {MultiSelectModule} from 'primeng/multiselect';
 import {ToastModule} from 'primeng/toast';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {TagModule} from 'primeng/tag';
+import {SelectButtonModule} from 'primeng/selectbutton';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import {TagModule} from 'primeng/tag';
 		MultiSelectModule,
 		ToastModule,
 		ConfirmDialogModule,
-		TagModule
+		TagModule,
+		SelectButtonModule
 	]
 })
 export class PrimeNgModule {

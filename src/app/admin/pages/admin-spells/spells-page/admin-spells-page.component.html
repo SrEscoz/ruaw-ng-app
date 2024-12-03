@@ -1,61 +1,11 @@
 <p-confirmDialog/>
 
-<p-card *ngIf="spellResponse; else loading"
-        header="Gestión de Conjuros">
+<div class="flex flex-column gap-3">
+    <spell-filters/>
 
-    <div class="mb-3 flex justify-content-between align-items-center">
-        <p-button label="Nuevo"
-                  icon="pi pi-plus"
-                  severity="success"
-                  [routerLink]="['/admin/spells/add']"
-        />
-    </div>
+    <p-card *ngIf="spellResponse; else loading"
+            header="Gestión de Conjuros">
 
-    <p-table
-            [value]="spells"
-            [paginator]="true"
-            [rows]="15"
-            [responsiveLayout]="'scroll'"
-            [resizableColumns]="true"
-            [tableStyle]="{'min-width': '50rem'}"
-            styleClass="p-datatable-gridlines p-datatable-striped">
-
-        <!-- Definimos las columnas -->
-        <ng-template pTemplate="header">
-            <tr>
-                <th pResizableColumn>Nombre</th>
-                <th pResizableColumn>Nivel</th>
-                <th pResizableColumn>Escuela</th>
-                <th pResizableColumn>Acciones</th>
-            </tr>
-        </ng-template>
-
-        <ng-template pTemplate="body" let-spell>
-            <tr>
-                <td>{{ spell.name }}</td>
-                <td>{{ spell.level }}</td>
-                <td>{{ spell.magicSchool }}</td>
-                <td>
-                    <button pButton
-                            type="button"
-                            icon="pi pi-pencil"
-                            class="p-button p-button-text p-button-help"
-                            (click)="onEditSpell(spell.id)">
-                    </button>
-                    <button pButton
-                            type="button"
-                            icon="pi pi-trash"
-                            class="p-button p-button-text p-button-danger"
-                            (click)="onDeleteSpell(spell.id, spell.name)">
-                    </button>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
-</p-card>
-
-<ng-template #loading>
-    <p-card header="Gestión de Conjuros">
         <div class="mb-3 flex justify-content-between align-items-center">
             <p-button label="Nuevo"
                       icon="pi pi-plus"
@@ -63,7 +13,17 @@
                       [routerLink]="['/admin/spells/add']"
             />
         </div>
-        <p-table [value]="[1,2,3,5,5]" [tableStyle]="{ 'min-width': '50rem' }">
+
+        <p-table
+                [value]="spells"
+                [paginator]="true"
+                [rows]="15"
+                [responsiveLayout]="'scroll'"
+                [resizableColumns]="true"
+                [tableStyle]="{'min-width': '50rem'}"
+                styleClass="p-datatable-gridlines p-datatable-striped">
+
+            <!-- Definimos las columnas -->
             <ng-template pTemplate="header">
                 <tr>
                     <th pResizableColumn>Nombre</th>
@@ -72,22 +32,66 @@
                     <th pResizableColumn>Acciones</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body">
+
+            <ng-template pTemplate="body" let-spell>
                 <tr>
+                    <td>{{ spell.name }}</td>
+                    <td>{{ spell.level }}</td>
+                    <td>{{ spell.magicSchool }}</td>
                     <td>
-                        <p-skeleton/>
-                    </td>
-                    <td>
-                        <p-skeleton/>
-                    </td>
-                    <td>
-                        <p-skeleton/>
-                    </td>
-                    <td>
-                        <p-skeleton/>
+                        <button pButton
+                                type="button"
+                                icon="pi pi-pencil"
+                                class="p-button p-button-text p-button-help"
+                                (click)="onEditSpell(spell.id)">
+                        </button>
+                        <button pButton
+                                type="button"
+                                icon="pi pi-trash"
+                                class="p-button p-button-text p-button-danger"
+                                (click)="onDeleteSpell(spell.id, spell.name)">
+                        </button>
                     </td>
                 </tr>
             </ng-template>
         </p-table>
     </p-card>
-</ng-template>
+
+    <ng-template #loading>
+        <p-card header="Gestión de Conjuros">
+            <div class="mb-3 flex justify-content-between align-items-center">
+                <p-button label="Nuevo"
+                          icon="pi pi-plus"
+                          severity="success"
+                          [routerLink]="['/admin/spells/add']"
+                />
+            </div>
+            <p-table [value]="[1,2,3,5,5]" [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pResizableColumn>Nombre</th>
+                        <th pResizableColumn>Nivel</th>
+                        <th pResizableColumn>Escuela</th>
+                        <th pResizableColumn>Acciones</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body">
+                    <tr>
+                        <td>
+                            <p-skeleton/>
+                        </td>
+                        <td>
+                            <p-skeleton/>
+                        </td>
+                        <td>
+                            <p-skeleton/>
+                        </td>
+                        <td>
+                            <p-skeleton/>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </p-card>
+    </ng-template>
+</div>
