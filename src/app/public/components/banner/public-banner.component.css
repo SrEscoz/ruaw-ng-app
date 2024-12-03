@@ -3,23 +3,25 @@
     top: 0;
     left: 0;
     width: 100%;
+    height: 5rem; /* Altura total */
     z-index: 1100;
-    border-bottom: 1px solid transparent;
 
     display: flex;
     flex-direction: column;
-    height: 4rem;
-}
-
-.layout-topbar-stiky {
-    border-bottom: 1px solid var(--surface-border);
 }
 
 .topbar-content {
-    width: 100%;
-    height: 4rem;
+    height: 3rem; /* Altura de la barra superior */
+    background-color: var(--primary-color, #1a1a1a); /* Fondo oscuro primario */
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 8px;
+}
+
+.topbar-actions p-button {
+    margin-left: 0.5rem; /* Separación entre botones */
+}
+
+.button-bar {
+    height: 2rem; /* Altura de la barra de botones */
+    background-color: #333333; /* Fondo oscuro secundario */
+    border-top: 1px solid #444444; /* Línea divisoria */
 }
