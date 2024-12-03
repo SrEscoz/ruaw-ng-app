@@ -10,6 +10,8 @@ import {SpellCardComponent} from './spells/components/card/spell-card.component'
 import {PrimeNgModule} from '../prime-ng/prime-ng.module';
 import {SpellImagePipe} from './pipes/spell-image.pipe';
 import {SpellDialogComponent} from './spells/components/dialog/spell-dialog.component';
+import {HomePageComponent} from './pages/home-page/home-page.component';
+import { PublicBannerComponent } from './components/banner/public-banner.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import {SpellDialogComponent} from './spells/components/dialog/spell-dialog.comp
 		SpellLevelPipe,
 		SpellCardComponent,
 		SpellImagePipe,
-		SpellDialogComponent
+		SpellDialogComponent,
+		HomePageComponent,
+  PublicBannerComponent
 	],
 	exports: [
 		SpellImagePipe,

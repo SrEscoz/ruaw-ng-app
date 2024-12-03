@@ -3,7 +3,7 @@ import {SpellsService} from '../../services/spells.service';
 import {Spell, SpellFilters, SpellResponse} from '../../interfaces/spells.interface';
 
 @Component({
-	selector: 'spells-list-page',
+	selector: 'public-spells-page',
 	standalone: false,
 
 	templateUrl: './spells-page.component.html',

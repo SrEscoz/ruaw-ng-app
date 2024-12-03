@@ -1,0 +1,25 @@
+.layout-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1100;
+    border-bottom: 1px solid transparent;
+
+    display: flex;
+    flex-direction: column;
+    height: 4rem;
+}
+
+.layout-topbar-stiky {
+    border-bottom: 1px solid var(--surface-border);
+}
+
+.topbar-content {
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+}
