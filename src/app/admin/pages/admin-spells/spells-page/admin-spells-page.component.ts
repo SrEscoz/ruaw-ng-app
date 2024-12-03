@@ -15,7 +15,7 @@ export class AdminSpellsPageComponent implements OnInit {
 	spellResponse!: SpellResponse;
 
 	spellFilters: SpellFilters = {
-		class: '', level: '', name: '', pageNumber: 0, pageSize: 300, school: ''
+		class: undefined, level: undefined, name: undefined, pageNumber: 0, pageSize: 300, school: undefined
 	};
 
 	constructor(
@@ -73,6 +73,11 @@ export class AdminSpellsPageComponent implements OnInit {
 
 	onEditSpell(id: number): void {
 		this.router.navigate(['/admin/spells/edit/', id]).then();
+	}
+
+	onFilterChange(filters: SpellFilters): void {
+		this.spellFilters = {...this.spellFilters, ...filters, pageNumber: 0};
+		this.loadSpells();
 	}
 
 	showSuccessToast(message: string): void {

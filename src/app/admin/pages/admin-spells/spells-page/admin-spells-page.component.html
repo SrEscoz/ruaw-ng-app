@@ -1,7 +1,7 @@
 <p-confirmDialog/>
 
 <div class="flex flex-column gap-3">
-    <spell-filters/>
+    <spell-filters (filtersChanged)="onFilterChange($event)"/>
 
     <p-card *ngIf="spellResponse; else loading"
             header="Gestión de Conjuros">
