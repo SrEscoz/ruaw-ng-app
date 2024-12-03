@@ -1,27 +1,22 @@
-.layout-topbar {
+.layout-bar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 5rem; /* Altura total */
     z-index: 1100;
 
     display: flex;
     flex-direction: column;
+
+    background: #121212;
+    border-bottom: 1px solid var(--gray-700);
 }
 
-.topbar-content {
-    height: 3rem; /* Altura de la barra superior */
-    background-color: var(--primary-color, #1a1a1a); /* Fondo oscuro primario */
+.bar-content {
+    height: 3rem;
     display: flex;
 }
 
-.topbar-actions p-button {
-    margin-left: 0.5rem; /* Separación entre botones */
-}
-
 .button-bar {
-    height: 2rem; /* Altura de la barra de botones */
-    background-color: #333333; /* Fondo oscuro secundario */
-    border-top: 1px solid #444444; /* Línea divisoria */
+    height: 3rem; /* Altura de la barra de botones */
 }
