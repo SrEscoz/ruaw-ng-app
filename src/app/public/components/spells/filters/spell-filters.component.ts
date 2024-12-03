@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {SpellsService} from '../../services/spells.service';
-import {SpellFilters} from '../../interfaces/spells.interface';
+import {SpellsService} from '../../../services/spells.service';
+import {SpellFilters} from '../../../interfaces/spells.interface';
 
 @Component({
 	selector: 'spell-filters',

@@ -3,16 +3,16 @@ import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
 	{
-		path: 'spells',
-		loadChildren: () => import ('./spells/spells.module').then(m => m.SpellsModule)
-	},
-	{
 		path: 'admin',
 		loadChildren: () => import ('./admin/admin.module').then(m => m.AdminModule)
 	},
 	{
+		path: '',
+		loadChildren: () => import ('./public/public.module').then(m => m.PublicModule)
+	},
+	{
 		path: '**',
-		redirectTo: 'spells'
+		redirectTo: ''
 	}
 ];
 

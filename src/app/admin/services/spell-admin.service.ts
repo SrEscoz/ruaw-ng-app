@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {BasicResponse, Spell} from '../../spells/interfaces/spells.interface';
+import {BasicResponse, Spell} from '../../public/interfaces/spells.interface';
 import {catchError, map, Observable, of, throwError} from 'rxjs';
 
 @Injectable({

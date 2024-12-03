@@ -6,10 +6,10 @@ import {Spell, SpellFilters, SpellResponse} from '../../interfaces/spells.interf
 	selector: 'spells-list-page',
 	standalone: false,
 
-	templateUrl: './spells-list-page.component.html',
+	templateUrl: './spells-page.component.html',
 	styles: ``
 })
-export class SpellsListPageComponent implements OnInit {
+export class SpellsPageComponent implements OnInit {
 
 	spellResponse!: SpellResponse;
 	selectedSpell?: Spell;

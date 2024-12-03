@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
-import {SpellsService} from '../../../../spells/services/spells.service';
+import {SpellsService} from '../../../../public/services/spells.service';
 import {CheckboxChangeEvent} from 'primeng/checkbox';
 import {MessageService} from 'primeng/api';
-import {Spell} from '../../../../spells/interfaces/spells.interface';
+import {Spell} from '../../../../public/interfaces/spells.interface';
 import {SpellAdminService} from '../../../services/spell-admin.service';
 import {ActivatedRoute, Router} from '@angular/router';
 

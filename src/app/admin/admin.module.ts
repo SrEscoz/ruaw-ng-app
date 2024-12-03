@@ -7,7 +7,7 @@ import {AdminSpellsPageComponent} from './pages/admin-spells/spells-page/admin-s
 import {PrimeNgModule} from '../prime-ng/prime-ng.module';
 import {AdminAddSpellPageComponent} from './pages/admin-spells/add-spell-page/admin-add-spell-page.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {SpellsModule} from '../spells/spells.module';
+import {PublicModule} from '../public/public.module';
 
 
 @NgModule({
@@ -21,7 +21,7 @@ import {SpellsModule} from '../spells/spells.module';
 		AdminRoutingModule,
 		PrimeNgModule,
 		ReactiveFormsModule,
-		SpellsModule,
+		PublicModule,
 	]
 })
 export class AdminModule {

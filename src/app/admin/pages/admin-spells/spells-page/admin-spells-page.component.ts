@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Spell, SpellFilters, SpellResponse} from '../../../../spells/interfaces/spells.interface';
-import {SpellsService} from '../../../../spells/services/spells.service';
+import {Spell, SpellFilters, SpellResponse} from '../../../../public/interfaces/spells.interface';
+import {SpellsService} from '../../../../public/services/spells.service';
 import {SpellAdminService} from '../../../services/spell-admin.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {Router} from '@angular/router';

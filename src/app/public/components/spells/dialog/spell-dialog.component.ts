@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Spell} from '../../interfaces/spells.interface';
+import {Spell} from '../../../interfaces/spells.interface';
 
 @Component({
 	selector: 'spell-dialog',
