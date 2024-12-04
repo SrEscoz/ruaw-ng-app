@@ -21,7 +21,7 @@ import {ToastModule} from 'primeng/toast';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {TagModule} from 'primeng/tag';
 import {SelectButtonModule} from 'primeng/selectbutton';
-import {MenubarModule} from 'primeng/menubar';
+import {MessageModule} from 'primeng/message';
 
 
 @NgModule({
@@ -49,7 +49,7 @@ import {MenubarModule} from 'primeng/menubar';
 		ConfirmDialogModule,
 		TagModule,
 		SelectButtonModule,
-		MenubarModule
+		MessageModule,
 	]
 })
 export class PrimeNgModule {
