@@ -2,6 +2,11 @@
 @import "primeng/resources/primeng.css";
 @import "primeng/resources/themes/aura-dark-green/theme.css";
 
+:root {
+    --background-color: rgba(18, 18, 18);
+    --background-color-transparency: rgba(18, 18, 18, 0.8);
+}
+
 .px-10rem {
     padding-left: 10rem !important;
     padding-right: 10rem !important;

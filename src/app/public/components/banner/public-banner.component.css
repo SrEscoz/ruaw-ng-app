@@ -8,7 +8,8 @@
     display: flex;
     flex-direction: column;
 
-    background: #121212;
+    backdrop-filter: blur(8px);
+    background-color: var(--background-color-transparency);
     border-bottom: 1px solid var(--gray-700);
 }
 
@@ -19,4 +20,8 @@
 
 .button-bar {
     height: 3rem; /* Altura de la barra de botones */
+}
+
+.active-button {
+    border-bottom: 3px solid var(--primary-color);
 }

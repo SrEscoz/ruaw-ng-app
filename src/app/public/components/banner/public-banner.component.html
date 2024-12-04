@@ -1,13 +1,36 @@
 <div class="layout-bar shadow-3">
     <!-- Barra superior -->
-    <div class="bar-content flex align-items-center justify-content-between px-4">
-        <span></span>
+    <div class="bar-content flex align-items-center justify-content-between sm:px-1 md:px-4 lg:px-6">
+        <h4>AUAW?</h4>
         <div class="bar-actions">
-            <p-button icon="pi pi-user" styleClass="p-button-text text-white"></p-button>
+            <p-button label="Nombre del señor logeado" icon="pi pi-user" [text]="true" severity="help"/>
         </div>
     </div>
     <!-- Barra de botones -->
-    <div class="button-bar flex align-items-center sm:px-1 md:px-4 lg:px-8">
-        <a>Inicio</a>
+    <div class="button-bar flex align-items-end sm:px-1 md:px-4 lg:px-6">
+        <p-button
+                label="Inicio"
+                icon="pi pi-home"
+                [text]="true"
+                routerLink="/home"
+                [severity]="router.isActive('/home', true) ? 'primary' : 'secondary'"
+                [ngClass]="{'active-button': router.isActive('/home', true)}"
+        ></p-button>
+        <p-button
+                label="Conjuros"
+                icon="pi pi-sparkles"
+                [text]="true"
+                routerLink="/spells"
+                [severity]="router.isActive('/spells', true) ? 'primary' : 'secondary'"
+                [ngClass]="{'active-button': router.isActive('/spells', true)}"
+        ></p-button>
+        <p-button
+                label="Clases"
+                icon="pi pi-shield"
+                [text]="true"
+                routerLink="/classes"
+                [severity]="router.isActive('/classes', true) ? 'primary' : 'secondary'"
+                [ngClass]="{'active-button': router.isActive('/classes', true)}"
+        ></p-button>
     </div>
 </div>
