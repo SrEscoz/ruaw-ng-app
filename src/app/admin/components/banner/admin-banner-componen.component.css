@@ -8,5 +8,5 @@
 }
 
 .active-button {
-    border-bottom: 3px solid var(--primary-color);
+    border-bottom: 3px solid var(--purple-600);
 }

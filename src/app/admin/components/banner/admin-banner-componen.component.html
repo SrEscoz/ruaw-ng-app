@@ -1,0 +1,33 @@
+<div class="layout-bar shadow-3">
+    <!-- Barra superior -->
+    <div class="bar-content flex align-items-center justify-content-between px-4 lg:px-6">
+        <div class="flex align-items-center gap-2">
+            <img src="assets/logo.png" class="w-2rem" alt="logo">
+            <h3>
+                RUA<span class="text-primary">W</span>?
+            </h3>
+        </div>
+        <div class="bar-actions">
+            <p-button icon="pi pi-user" [text]="true" severity="help"/>
+        </div>
+    </div>
+    <!-- Barra de botones -->
+    <div class="button-bar flex align-items-end sm:px-1 md:px-4 lg:px-6">
+        <p-button
+                label="Inicio"
+                icon="pi pi-home"
+                [text]="true"
+                routerLink="/admin"
+                [severity]="router.isActive('/admin', true) ? 'help' : 'secondary'"
+                [ngClass]="{'active-button': router.isActive('/admin', true)}"
+        ></p-button>
+        <p-button
+                label="Conjuros"
+                icon="pi pi-sparkles"
+                [text]="true"
+                routerLink="/admin/spells"
+                [severity]="router.isActive('admin/spells', true) ? 'help' : 'secondary'"
+                [ngClass]="{'active-button': router.isActive('admin/spells', true)}"
+        ></p-button>
+    </div>
+</div>

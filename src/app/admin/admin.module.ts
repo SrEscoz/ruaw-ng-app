@@ -8,13 +8,15 @@ import {PrimeNgModule} from '../prime-ng/prime-ng.module';
 import {AdminAddSpellPageComponent} from './pages/admin-spells/add-spell-page/admin-add-spell-page.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {PublicModule} from '../public/public.module';
+import {AdminBannerComponent} from './components/banner/admin-banner-componen.component';
 
 
 @NgModule({
 	declarations: [
 		AdminLayoutPageComponent,
 		AdminSpellsPageComponent,
-		AdminAddSpellPageComponent
+		AdminAddSpellPageComponent,
+		AdminBannerComponent
 	],
 	imports: [
 		CommonModule,

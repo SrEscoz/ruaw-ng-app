@@ -7,9 +7,28 @@
     --background-color-transparency: rgba(18, 18, 18, 0.8);
 }
 
+.layout-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1100;
+
+    display: flex;
+    flex-direction: column;
+
+    backdrop-filter: blur(8px);
+    background-color: var(--background-color-transparency);
+    border-bottom: 1px solid var(--gray-700);
+}
+
 .px-10rem {
     padding-left: 10rem !important;
     padding-right: 10rem !important;
+}
+
+.mt-9 {
+    margin-top: 7rem !important;
 }
 
 .mt-10 {
