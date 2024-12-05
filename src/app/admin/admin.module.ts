@@ -9,6 +9,7 @@ import {AdminAddSpellPageComponent} from './pages/admin-spells/add-spell-page/ad
 import {ReactiveFormsModule} from '@angular/forms';
 import {PublicModule} from '../public/public.module';
 import {AdminBannerComponent} from './components/banner/admin-banner-componen.component';
+import {AdminClassPageComponent} from './pages/admin-class-page/admin-class-page.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {AdminBannerComponent} from './components/banner/admin-banner-componen.co
 		AdminLayoutPageComponent,
 		AdminSpellsPageComponent,
 		AdminAddSpellPageComponent,
-		AdminBannerComponent
+		AdminBannerComponent,
+		AdminClassPageComponent
 	],
 	imports: [
 		CommonModule,

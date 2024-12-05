@@ -14,20 +14,21 @@
     <!-- Barra de botones -->
     <div class="button-bar flex align-items-end sm:px-1 md:px-4 lg:px-6">
         <p-button
-                label="Inicio"
-                icon="pi pi-home"
-                [text]="true"
-                routerLink="/admin"
-                [severity]="router.isActive('/admin', true) ? 'help' : 'secondary'"
-                [ngClass]="{'active-button': router.isActive('/admin', true)}"
-        ></p-button>
-        <p-button
                 label="Conjuros"
                 icon="pi pi-sparkles"
                 [text]="true"
                 routerLink="/admin/spells"
-                [severity]="router.isActive('admin/spells', true) ? 'help' : 'secondary'"
-                [ngClass]="{'active-button': router.isActive('admin/spells', true)}"
+                [severity]="isActiveRoute('/admin/spells') ? 'help' : 'secondary'"
+                [ngClass]="{'active-button': isActiveRoute('/admin/spells')}"
+        ></p-button>
+
+        <p-button
+                label="Clases"
+                icon="pi pi-shield"
+                [text]="true"
+                routerLink="/admin/classes"
+                [severity]="isActiveRoute('/admin/classes') ? 'help' : 'secondary'"
+                [ngClass]="{'active-button': isActiveRoute('/admin/classes')}"
         ></p-button>
     </div>
 </div>
