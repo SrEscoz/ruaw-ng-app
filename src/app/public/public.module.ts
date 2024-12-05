@@ -12,7 +12,10 @@ import {SpellImagePipe} from './pipes/spell-image.pipe';
 import {SpellDialogComponent} from './spells/components/dialog/spell-dialog.component';
 import {HomePageComponent} from './pages/home-page/home-page.component';
 import {PublicBannerComponent} from './components/banner/public-banner.component';
-import {ClassPageComponent} from './pages/class-page/class-page.component';
+import {ClassesPageComponent} from './pages/classes-page/classes-page.component';
+import {ClassesModule} from './classes/classes.module';
+import {ClassImagePipe} from './pipes/class-image.pipe';
+import {ClassCardComponent} from './classes/components/class-card/class-card.component';
 
 
 @NgModule({
@@ -26,17 +29,21 @@ import {ClassPageComponent} from './pages/class-page/class-page.component';
 		SpellDialogComponent,
 		HomePageComponent,
 		PublicBannerComponent,
-		ClassPageComponent
+		ClassCardComponent,
+		ClassesPageComponent,
+		ClassImagePipe
 	],
 	exports: [
 		SpellImagePipe,
-		SpellFiltersComponent
+		SpellFiltersComponent,
+		ClassImagePipe
 	],
 	imports: [
 		CommonModule,
 		PublicRoutingModule,
 		PrimeNgModule,
-		NgOptimizedImage
+		NgOptimizedImage,
+		ClassesModule
 	]
 })
 export class PublicModule {

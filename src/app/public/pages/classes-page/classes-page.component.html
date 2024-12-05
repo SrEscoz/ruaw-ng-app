@@ -1,0 +1,15 @@
+<div *ngIf="classes; else loading" class="mb-4 px-2">
+    <div class="my-4 flex flex-wrap">
+        <div *ngFor="let clazz of classes" class="w-12 md:w-6 px-2 mb-2">
+            <class-card [class]="clazz"></class-card>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="flex justify-content-center mt-8">
+        <div>
+            <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
+        </div>
+    </div>
+</ng-template>

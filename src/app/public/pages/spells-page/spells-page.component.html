@@ -3,7 +3,7 @@
 <spell-filters (filtersChanged)="onFiltersChange($event)"></spell-filters>
 
 <div *ngIf="spells; else loading" class="mb-4">
-    <div class="my-4 flex flex-column gap-4">
+    <div class="my-4 flex flex-column gap-3">
         <div *ngFor="let spell of spells">
             <spell-card [spell]="spell"
                         (click)="showSpellDetails(spell)"/>
