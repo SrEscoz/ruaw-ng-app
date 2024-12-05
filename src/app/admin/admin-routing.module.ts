@@ -3,7 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {AdminLayoutPageComponent} from './pages/layout-page/admin-layout-page.component';
 import {AdminSpellsPageComponent} from './pages/admin-spells/spells-page/admin-spells-page.component';
 import {AdminAddSpellPageComponent} from './pages/admin-spells/add-spell-page/admin-add-spell-page.component';
-import {AdminClassPageComponent} from './pages/admin-class-page/admin-class-page.component';
+import {AdminClassPageComponent} from './pages/admin-classes/admin-class-page/admin-class-page.component';
 
 const routes: Routes = [
 	{
