@@ -32,7 +32,7 @@ export class AdminClassPageComponent implements OnInit {
 	}
 
 	onEditClass(id: number): void {
-
+		this.router.navigate(['/admin/classes/edit/', id]).then();
 	}
 
 	onDeleteClass(id: number, name: string): void {

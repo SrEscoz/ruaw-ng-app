@@ -9,6 +9,13 @@ export interface CompleteClass {
 	id: number;
 	name: string;
 	description: string;
+	simpleDescription?: string;
+	source: string;
+	hitDice: string;
+	magicalAptitude: string;
+	multiClassRequisite: string;
+	castsKnown: boolean;
+	castPrepared: boolean;
 	spells: ClassSpell[];
 	levels: Level[];
 }

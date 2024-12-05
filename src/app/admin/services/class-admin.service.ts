@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {BasicResponse, Spell} from '../../public/interfaces/spells.interface';
+import {BasicResponse} from '../../public/interfaces/spells.interface';
 import {catchError, map, Observable, of, throwError} from 'rxjs';
+import {CompleteClass} from '../../public/interfaces/classes.interface';
 
 @Injectable({
 	providedIn: 'root'
@@ -14,8 +15,8 @@ export class ClassAdminService {
 	constructor(private http: HttpClient) {
 	}
 
-	saveSpell(spell: Spell): Observable<Spell | null> {
-		return this.http.post<Spell>(`${this.baseUrl}/spells`, spell)
+	saveClass(clazz: CompleteClass): Observable<CompleteClass | null> {
+		return this.http.post<CompleteClass>(`${this.baseUrl}/classes`, clazz)
 			.pipe(
 				catchError((err: HttpErrorResponse) => {
 					if (err.status === 409) {
@@ -27,8 +28,8 @@ export class ClassAdminService {
 			);
 	}
 
-	updateSpell(spell: Spell): Observable<Spell | null> {
-		return this.http.put<Spell>(`${this.baseUrl}/spells/${spell.id}`, spell)
+	updateClass(clazz: CompleteClass): Observable<CompleteClass | null> {
+		return this.http.put<CompleteClass>(`${this.baseUrl}/classes/${clazz.id}`, clazz)
 			.pipe(
 				catchError((err: HttpErrorResponse) => {
 					if (err.status === 409) {

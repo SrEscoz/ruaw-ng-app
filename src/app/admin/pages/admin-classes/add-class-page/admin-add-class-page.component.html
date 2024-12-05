@@ -1,0 +1,125 @@
+<p-card>
+
+    <!-- Cabecera de la carta -->
+    <ng-template pTemplate="header">
+        <div class="inline-flex align-items-center justify-content-center gap-2 p-3">
+            <p-avatar
+                    image="assets/classes/guerrero.png"
+                    size="large"
+                    shape="circle"/>
+
+            <span class="font-bold white-space-nowrap">
+                    {{ isEditMode ? 'Editar Clase' : 'Añadir una Clase básica' }}
+            </span>
+        </div>
+    </ng-template>
+
+    <!-- Formulario -->
+    <form [formGroup]="classForm" (ngSubmit)="onSubmit()">
+        <div class="formgrid grid">
+
+            <!-- Nombre -->
+            <div class="field col-12 md:col-6 lg:col-5 xl:col-3">
+                <label>Nombre</label>
+                <input pInputText
+                       id="name"
+                       formControlName="name"
+                       class="w-full">
+            </div>
+
+            <!-- Origen  -->
+            <div class="field col-12 md:col-6 lg:col-4 xl:col-3">
+                <label>Origen</label>
+                <p-dropdown id="source"
+                            [options]="sourceItems"
+                            formControlName="source"
+                            [style]="{'width':'100%'}"/>
+            </div>
+
+            <!-- Dados de golpe -->
+            <div class="field col-4 lg:col-3 xl:col-2">
+                <label>Dados de golpe</label>
+                <p-dropdown id="hitDice"
+                            [options]="diceItems"
+                            formControlName="hitDice"
+                            [style]="{'width':'100%'}"/>
+            </div>
+
+            <!-- Aptitud mágica -->
+            <div class="field col-8 lg:col-6 xl:col-2">
+                <label>Aptitud mágica</label>
+                <p-dropdown id="magicalAptitude"
+                            [options]="aptitudeItems"
+                            formControlName="magicalAptitude"
+                            [style]="{'width':'100%'}"/>
+            </div>
+
+            <!-- Requisito de multiclase -->
+            <div class="field col-12 lg:col-6 xl:col">
+                <label>Requisito de multiclase</label>
+                <input pInputText
+                       id="multiclass"
+                       formControlName="multiclass"
+                       class="w-full">
+            </div>
+
+            <!-- Conjuros preparados / conocidos -->
+            <div class="field col-12 flex gap-4 align-items-center">
+                <p-checkbox inputId="known"
+                            binary="true"
+                            formControlName="known"
+                            label="Conjuros conocidos">
+                </p-checkbox>
+
+                <p-checkbox inputId="prepared"
+                            binary="true"
+                            formControlName="prepared"
+                            label="Conjuros preparados">
+                </p-checkbox>
+            </div>
+
+            <!-- Descripción corta -->
+            <div class="field col-12">
+                <label>Descripción corta</label>
+                <textarea id="highLevelsDescription"
+                          rows="5"
+                          cols="30"
+                          pInputTextarea
+                          formControlName="shortDescription"
+                          class="w-full">
+                </textarea>
+            </div>
+
+            <!-- Descripción -->
+            <div class="field col-12">
+                <label>Descripción</label>
+                <textarea id="description"
+                          rows="5"
+                          cols="30"
+                          pInputTextarea
+                          formControlName="description"
+                          class="w-full">
+                </textarea>
+            </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="flex justify-content-end mt-4 gap-2">
+            <p-button label="Cancelar"
+                      [outlined]="true"
+                      severity="secondary"
+                      [routerLink]="['/admin/classes/']"
+            />
+
+            <p-button label="{{ isEditMode ? 'Actualizar' : 'Guardar' }}"
+                      [outlined]="true"
+                      type="submit"/>
+
+            <p-button *ngIf="!isEditMode"
+                      [outlined]="true"
+                      severity="help"
+                      icon="pi pi-plus"
+                      (onClick)="onSubmit(true)"/>
+        </div>
+    </form>
+</p-card>
