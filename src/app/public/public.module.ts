@@ -11,7 +11,8 @@ import {PrimeNgModule} from '../prime-ng/prime-ng.module';
 import {SpellImagePipe} from './pipes/spell-image.pipe';
 import {SpellDialogComponent} from './spells/components/dialog/spell-dialog.component';
 import {HomePageComponent} from './pages/home-page/home-page.component';
-import { PublicBannerComponent } from './components/banner/public-banner.component';
+import {PublicBannerComponent} from './components/banner/public-banner.component';
+import {ClassPageComponent} from './pages/class-page/class-page.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { PublicBannerComponent } from './components/banner/public-banner.compone
 		SpellImagePipe,
 		SpellDialogComponent,
 		HomePageComponent,
-  PublicBannerComponent
+		PublicBannerComponent,
+		ClassPageComponent
 	],
 	exports: [
 		SpellImagePipe,

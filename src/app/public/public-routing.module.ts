@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {PublicLayoutPageComponent} from './pages/layout-page/public-layout-page.component';
 import {SpellsPageComponent} from './pages/spells-page/spells-page.component';
 import {HomePageComponent} from './pages/home-page/home-page.component';
+import {ClassPageComponent} from './pages/class-page/class-page.component';
 
 const routes: Routes = [
 	{
@@ -11,6 +12,7 @@ const routes: Routes = [
 		children: [
 			{path: 'home', component: HomePageComponent},
 			{path: 'spells', component: SpellsPageComponent},
+			{path: 'classes', component: ClassPageComponent},
 			{path: '**', redirectTo: 'home'},
 		]
 	}
