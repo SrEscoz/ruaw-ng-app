@@ -141,25 +141,19 @@
             <!-- Descripción -->
             <div class="field col-12">
                 <label for="description">Descripción</label>
-                <textarea id="description"
-                          rows="5"
-                          cols="30"
-                          pInputTextarea
-                          formControlName="description"
-                          class="w-full">
-                </textarea>
+                <p-editor id="description"
+                          [style]="{'height':'350px'}"
+                          formControlName="description">
+                </p-editor>
             </div>
 
             <!-- En niveles superiores -->
             <div class="field col-12">
                 <label for="highLevelsDescription">En niveles superiores</label>
-                <textarea id="highLevelsDescription"
-                          rows="5"
-                          cols="30"
-                          pInputTextarea
-                          formControlName="highLevelsDescription"
-                          class="w-full">
-                </textarea>
+                <p-editor id="highLevelsDescription"
+                          [style]="{'height':'250px'}"
+                          formControlName="highLevelsDescription">
+                </p-editor>
             </div>
         </div>
 

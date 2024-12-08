@@ -40,22 +40,29 @@
 
         <!-- Información estructurada -->
         <div class="flex flex-column gap-2">
-            <span><span class="font-bold">Componentes:</span> <span class="text-color-secondary"> {{ spell.components }}</span></span>
-            <span *ngIf="spell.materials"><span class="font-bold">Materiales:</span> <span class="text-color-secondary"> {{ spell.materials }}</span></span>
-            <span><span class="font-bold">Tiempo de lanzamiento:</span> <span class="text-color-secondary"> {{ spell.castingTime }}</span></span>
-            <span><span class="font-bold">Alcance:</span> <span class="text-color-secondary"> {{ spell.range }}</span></span>
-            <span><span class="font-bold">Duración:</span> <span class="text-color-secondary"> {{ spell.duration }}</span></span>
+            <span><span class="font-bold">Componentes:</span> <span
+                    class="text-color-secondary"> {{ spell.components }}</span></span>
+            <span *ngIf="spell.materials"><span class="font-bold">Materiales:</span> <span
+                    class="text-color-secondary"> {{ spell.materials }}</span></span>
+            <span><span class="font-bold">Tiempo de lanzamiento:</span> <span
+                    class="text-color-secondary"> {{ spell.castingTime }}</span></span>
+            <span><span class="font-bold">Alcance:</span> <span
+                    class="text-color-secondary"> {{ spell.range }}</span></span>
+            <span><span class="font-bold">Duración:</span> <span
+                    class="text-color-secondary"> {{ spell.duration }}</span></span>
         </div>
 
         <!-- Descripción -->
         <div class="mt-3" *ngIf="spell">
-            <p style="white-space: pre-line" class="text-color-secondary">{{ spell.description }}</p>
+            <span class="text-color-secondary" [innerHtml]="spell.description"></span>
         </div>
 
         <!-- Mejoras en niveles altos -->
         <div class="mt-3" *ngIf="spell.highLevelsDescription">
             <p style="white-space: pre-line"><span
-                    class="font-bold">En niveles superiores:</span> <span class="text-color-secondary"> {{ spell.highLevelsDescription }}</span></p>
+                    class="font-bold">En niveles superiores:</span>
+                <span class="text-color-secondary" [innerHtml]="spell.highLevelsDescription"></span>
+            </p>
         </div>
 
     </div>

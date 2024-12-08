@@ -22,6 +22,7 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {TagModule} from 'primeng/tag';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {MessageModule} from 'primeng/message';
+import {EditorModule} from 'primeng/editor';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import {MessageModule} from 'primeng/message';
 		TagModule,
 		SelectButtonModule,
 		MessageModule,
+		EditorModule
 	]
 })
 export class PrimeNgModule {
