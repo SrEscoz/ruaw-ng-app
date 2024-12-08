@@ -9,7 +9,7 @@ import {ClassesService} from '../../services/classes.service';
 })
 export class ClassesPageComponent implements OnInit {
 
-	classes: MinimalClass[] = [];
+	classes!: MinimalClass[];
 
 	constructor(private classService: ClassesService) {}
 

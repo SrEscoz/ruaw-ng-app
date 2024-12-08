@@ -13,7 +13,7 @@ const routes: Routes = [
 			{path: 'home', component: HomePageComponent},
 			{path: 'spells', component: SpellsPageComponent},
 			{path: 'classes', component: ClassesPageComponent},
-			{path: '**', redirectTo: 'home'},
+			{path: '**', redirectTo: 'spells'},
 		]
 	}
 ];
