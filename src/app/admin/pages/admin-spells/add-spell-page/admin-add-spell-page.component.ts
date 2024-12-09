@@ -167,12 +167,15 @@ export class AdminAddSpellPageComponent implements OnInit {
 	}
 
 	buildSpellRequest(): Spell {
+		const descripton: string = this.spellForm.get('description')?.value;
+		const highLevelsDescription: string = this.spellForm.get('highLevelsDescription')?.value;
+
 		return {
 			id: this.spellId ? this.spellId : 0,
 			name: this.spellForm.get('name')?.value,
 			magicSchool: this.spellForm.get('school')?.value,
 			level: this.spellForm.get('level')?.value,
-			description: this.spellForm.get('description')?.value,
+			description: this.replaceNonBreakingSpaces(descripton),
 			castingTime: this.spellForm.get('castingTime')?.value,
 			range: this.spellForm.get('range')?.value,
 			components: this.getComponents(),
@@ -180,7 +183,7 @@ export class AdminAddSpellPageComponent implements OnInit {
 			duration: this.spellForm.get('duration')?.value,
 			ritual: this.spellForm.get('ritual')?.value,
 			concentration: this.spellForm.get('concentration')?.value,
-			highLevelsDescription: this.spellForm.get('highLevelsDescription')?.value || null,
+			highLevelsDescription: this.replaceNonBreakingSpaces(highLevelsDescription),
 			source: this.spellForm.get('source')?.value,
 			classes: this.spellForm.get('classes')?.value
 		};
@@ -199,6 +202,13 @@ export class AdminAddSpellPageComponent implements OnInit {
 			const control = this.spellForm.get(controlName);
 			control?.markAsDirty();
 		});
+	}
+
+	replaceNonBreakingSpaces(text: string | null): string {
+		if (text == null || text === '<p></p>')
+			return '';
+
+		return text.replace(/&nbsp;/g, ' ');
 	}
 
 	showWarningToast(message: string): void {
