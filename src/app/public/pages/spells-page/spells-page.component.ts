@@ -47,6 +47,11 @@ export class SpellsPageComponent implements OnInit {
 		this.spellFilters.pageSize = event.rows;
 
 		this.loadSpells();
+
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth'
+		});
 	}
 
 	showSpellDetails(spell: Spell): void {

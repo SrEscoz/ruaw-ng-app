@@ -22,7 +22,8 @@
                 [responsiveLayout]="'scroll'"
                 [resizableColumns]="true"
                 [tableStyle]="{'min-width': '50rem'}"
-                styleClass="p-datatable-gridlines p-datatable-striped">
+                styleClass="p-datatable-gridlines p-datatable-striped"
+                (onPage)="onPageChange()">
 
             <!-- Definimos las columnas -->
             <ng-template pTemplate="header">
