@@ -154,7 +154,8 @@ export class AdminAddSpellPageComponent implements OnInit {
 						: 'Conjuro añadido con éxito');
 
 					if (saveAddOther && !this.isEditMode) {
-						this.spellForm.reset();
+						this.resetForm();
+
 					} else {
 						this.router.navigate(['/admin/spells']);
 					}
@@ -187,6 +188,41 @@ export class AdminAddSpellPageComponent implements OnInit {
 			source: this.spellForm.get('source')?.value,
 			classes: this.spellForm.get('classes')?.value
 		};
+	}
+
+	resetForm(): void {
+		this.spellForm.reset({
+			name: undefined,
+			source: 'Player\'s Handbook',
+			level: 0,
+			school: 'Evocación',
+			classes: undefined,
+			castingTime: undefined,
+			range: '',
+			materials: '',
+			duration: '',
+			ritual: false,
+			concentration: false,
+			description: '',
+			highLevelsDescription: '',
+			components: {
+				verbal: false,
+				somatic: false,
+				material: false
+			}
+		});
+
+		this.spellForm.get('materials')?.disable();
+		this.spellForm.get('materials')?.clearValidators();
+		this.spellForm.get('materials')?.updateValueAndValidity();
+
+		this.isEditMode = false;
+		this.spellId = undefined;
+
+		window.scroll({
+			top: 0,
+			behavior: 'smooth'
+		});
 	}
 
 	getComponents(): string {
