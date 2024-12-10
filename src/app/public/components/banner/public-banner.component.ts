@@ -10,4 +10,7 @@ export class PublicBannerComponent {
 
 	constructor(protected router: Router) { }
 
+	isActiveRoute(route: string): boolean {
+		return this.router.isActive(route, false);
+	}
 }

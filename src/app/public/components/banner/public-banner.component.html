@@ -20,24 +20,24 @@
                 icon="pi pi-home"
                 [text]="true"
                 routerLink="/home"
-                [severity]="router.isActive('/home', true) ? 'primary' : 'secondary'"
-                [ngClass]="{'active-button': router.isActive('/home', true)}"
+                [severity]="isActiveRoute('/home') ? 'primary' : 'secondary'"
+                [ngClass]="{'active-button': isActiveRoute('/home')}"
         ></p-button>
         <p-button
                 label="Conjuros"
                 icon="pi pi-sparkles"
                 [text]="true"
                 routerLink="/spells"
-                [severity]="router.isActive('/spells', true) ? 'primary' : 'secondary'"
-                [ngClass]="{'active-button': router.isActive('/spells', true)}"
+                [severity]="isActiveRoute('/spells') ? 'primary' : 'secondary'"
+                [ngClass]="{'active-button': isActiveRoute('/spells')}"
         ></p-button>
         <p-button
                 label="Clases"
                 icon="pi pi-shield"
                 [text]="true"
                 routerLink="/classes"
-                [severity]="router.isActive('/classes', true) ? 'primary' : 'secondary'"
-                [ngClass]="{'active-button': router.isActive('/classes', true)}"
+                [severity]="isActiveRoute('/classes') ? 'primary' : 'secondary'"
+                [ngClass]="{'active-button': isActiveRoute('/classes')}"
         ></p-button>
     </div>
 </div>
