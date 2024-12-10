@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {SpellsService} from '../../../services/spells.service';
 import {SpellFilters} from '../../../interfaces/spells.interface';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
 	selector: 'spell-filters',
@@ -23,7 +24,8 @@ export class SpellFiltersComponent implements OnInit {
 	levelFilter?: string;
 	classFilter?: string;
 
-	constructor(private spellsService: SpellsService) {}
+	constructor(private spellsService: SpellsService,
+	            private route: ActivatedRoute) {}
 
 	ngOnInit(): void {
 		this.spellsService.getClasses()
@@ -31,6 +33,13 @@ export class SpellFiltersComponent implements OnInit {
 
 		this.spellsService.getSchools()
 			.subscribe(schools => {this.schoolsItems = schools;});
+
+		this.route.queryParams.subscribe(params => {
+			this.nameFilter = params['name'] || undefined;
+			this.schoolFilter = params['school'] || undefined;
+			this.levelFilter = params['level'] || undefined;
+			this.classFilter = params['class'] || undefined;
+		});
 	}
 
 	onChange(): void {
