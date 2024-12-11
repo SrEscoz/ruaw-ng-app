@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
 
 @Component({
 	selector: 'auth-signin-page',
@@ -6,5 +7,7 @@ import {Component} from '@angular/core';
 	styles: ``
 })
 export class RegisterPageComponent {
+
+	private formBuilder = inject(FormBuilder);
 
 }

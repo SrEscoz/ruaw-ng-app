@@ -10,16 +10,39 @@
 
         <h3>Iniciar sesión</h3>
 
-        <div class="field">
-            <label for="username">Usuario</label>
-            <input id="username" type="text" pInputText class="w-full">
-        </div>
-        <div class="field">
-            <label for="password">Contraseña</label>
-            <input id="password" type="text" pInputText class="w-full">
-        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
 
-        <p-button label="Login" severity="primary" styleClass="w-full"/>
+            <div class="field">
+                <label for="username">Usuario</label>
+                <input id="username"
+                       type="text"
+                       formControlName="username"
+                       pInputText
+                       class="w-full">
+                <div *ngIf="validateField('username')" class="mt-1">
+                    <small *ngIf="isValidField('username')" class="text-red-500">
+                        El usuario es obligatorio
+                    </small>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="password">Contraseña</label>
+                <input id="password"
+                       type="password"
+                       formControlName="password"
+                       pInputText
+                       class="w-full">
+                <div *ngIf="validateField('password')" class="mt-1">
+                    <small *ngIf="isValidPasswordFormat" class="text-red-500">
+                        La contraseña debe tener al menos 8 caracteres y contener al menos una letra mayúscula, una
+                        minúscula y un número
+                    </small>
+                </div>
+            </div>
+
+            <p-button label="Login" type="submit" styleClass="w-full"/>
+        </form>
 
         <div class="flex justify-content-end mt-5 mb-2">
             <a routerLink="/auth/register" class="text-teal-300">¿No tienes cuenta?</a>
