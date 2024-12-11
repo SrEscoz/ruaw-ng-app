@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {MinimalClass} from '../../../interfaces/classes.interface';
+import {MinimalClass} from '../../interfaces/classes.interface';
 
 @Component({
 	selector: 'class-card',
