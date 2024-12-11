@@ -5,6 +5,7 @@ import {AuthRoutingModule} from './auth-routing.module';
 import {AuthLayoutPageComponent} from './pages/layout-page/auth-layout-page.component';
 import {LoginPageComponent} from './pages/login-page/login-page.component';
 import {RegisterPageComponent} from './pages/register-page/register-page.component';
+import {PrimeNgModule} from '../prime-ng/prime-ng.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {RegisterPageComponent} from './pages/register-page/register-page.compone
 	],
 	imports: [
 		CommonModule,
-		AuthRoutingModule
+		AuthRoutingModule,
+		PrimeNgModule
 	]
 })
 export class AuthModule {
