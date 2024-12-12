@@ -19,7 +19,7 @@ export class LoginPageComponent {
 	public isInvalidCredentials = false;
 
 	public loginForm: FormGroup = this.formBuilder.group({
-		username: ['', Validators.required],
+		email: ['', Validators.required],
 		password: ['', Validators.required],
 	});
 
@@ -32,9 +32,9 @@ export class LoginPageComponent {
 
 			return;
 		}
-		const {username, password} = this.loginForm.value;
+		const {email, password} = this.loginForm.value;
 
-		this.authService.login(username, password)
+		this.authService.login(email, password)
 			.subscribe({
 					next: () => {
 						this.showWarningToast('¡Bienvenido de nuevo!');

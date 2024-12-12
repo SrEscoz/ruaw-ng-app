@@ -19,15 +19,15 @@
         <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
 
             <div class="field">
-                <label for="username">Usuario</label>
-                <input id="username"
-                       type="text"
-                       formControlName="username"
+                <label for="email">Email</label>
+                <input id="email"
+                       type="email"
+                       formControlName="email"
                        pInputText
                        class="w-full">
-                <div *ngIf="validateField('username')" class="mt-1">
-                    <small *ngIf="isValidField('username')" class="text-red-400">
-                        El usuario es obligatorio
+                <div *ngIf="validateField('email')" class="mt-1">
+                    <small *ngIf="isValidField('email')" class="text-red-400">
+                        El email es obligatorio
                     </small>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                        class="w-full">
                 <div *ngIf="validateField('password')" class="mt-1">
                     <small *ngIf="isValidField('password')" class="text-red-400">
-                        La constraseña es obligatoria
+                        La contraseña es obligatoria
                     </small>
                 </div>
             </div>

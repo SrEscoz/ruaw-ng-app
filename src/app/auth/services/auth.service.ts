@@ -27,9 +27,9 @@ export class AuthService {
 
 	constructor() { }
 
-	login(username: string, password: string): Observable<boolean> {
+	login(email: string, password: string): Observable<boolean> {
 		const url = `${this.baseUrl}/login`;
-		const body = {username, password};
+		const body = {email, password};
 
 		return this.http.post<LoginResponse>(url, body)
 			.pipe(
