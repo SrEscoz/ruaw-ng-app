@@ -9,15 +9,21 @@
                 RUA<span class="text-primary">W</span>?
             </h3>
         </div>
-        <div class="bar-actions">
+        <div class="flex gap-2">
             <p-button *ngIf="authStatus === AuthStatus.authenticatedAdmin"
                       icon="pi pi-wrench"
                       label="Admin"
                       [text]="true"
+                      [outlined]="true"
                       severity="danger"
                       (click)="router.navigate(['/admin'])"/>
 
-            <p-button icon="pi pi-user" [text]="true" severity="help"/>
+            <p-button
+                    *ngIf="authStatus !== AuthStatus.authenticatedAdmin && authStatus !== AuthStatus.authenticated"
+                    icon="pi pi-sign-in"
+                    [text]="true"
+                    [outlined]="true"
+                    (click)="router.navigate(['/auth/login'])"/>
         </div>
     </div>
     <!-- Barra de botones -->
