@@ -1,6 +1,8 @@
 import {Component, inject} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
+import {Router} from '@angular/router';
+import {MessageService} from 'primeng/api';
 
 @Component({
 	selector: 'auth-login-page',
@@ -11,6 +13,8 @@ export class LoginPageComponent {
 
 	private formBuilder = inject(FormBuilder);
 	private authService = inject(AuthService);
+	private messageService = inject(MessageService);
+	private router = inject(Router);
 
 	public isInvalidCredentials = false;
 
@@ -32,7 +36,10 @@ export class LoginPageComponent {
 
 		this.authService.login(username, password)
 			.subscribe({
-					next: result => {},
+					next: () => {
+						this.showWarningToast('¡Bienvenido de nuevo!');
+						this.router.navigateByUrl('/spells');
+					},
 					error: () => this.isInvalidCredentials = true
 				}
 			);
@@ -74,5 +81,14 @@ export class LoginPageComponent {
 	isValidPasswordFormat(): boolean {
 		return this.loginForm.get('password')?.errors?.['minlength']
 			|| this.loginForm.get('password')?.errors?.['passwordInvalid'];
+	}
+
+	showWarningToast(message: string): void {
+		this.messageService.add({
+			summary: 'Login',
+			severity: 'success',
+			detail: message,
+			life: 2500
+		});
 	}
 }
