@@ -1,5 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
 	selector: 'auth-login-page',
@@ -9,20 +10,32 @@ import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} f
 export class LoginPageComponent {
 
 	private formBuilder = inject(FormBuilder);
+	private authService = inject(AuthService);
+
+	public isInvalidCredentials = false;
 
 	public loginForm: FormGroup = this.formBuilder.group({
 		username: ['', Validators.required],
-		password: ['', [Validators.required, Validators.minLength(8), this.passwordValidator()]],
+		password: ['', Validators.required],
 	});
 
 	onLogin(): void {
+		this.isInvalidCredentials = false;
+
 		if (!this.loginForm.valid) {
 			this.loginForm.markAllAsTouched();
 			this.markAllAsDirty();
 
 			return;
 		}
-		console.log(this.loginForm.value);
+		const {username, password} = this.loginForm.value;
+
+		this.authService.login(username, password)
+			.subscribe({
+					next: result => {},
+					error: () => this.isInvalidCredentials = true
+				}
+			);
 	}
 
 	markAllAsDirty(): void {
@@ -32,6 +45,7 @@ export class LoginPageComponent {
 		});
 	}
 
+	// TODO esto no va aquí xd
 	passwordValidator() {
 		return (control: AbstractControl): ValidationErrors | null => {
 			const value = control.value;
@@ -56,6 +70,7 @@ export class LoginPageComponent {
 		return this.loginForm.get(field)?.errors?.['required'];
 	}
 
+	// TODO esto no va aquí xd
 	isValidPasswordFormat(): boolean {
 		return this.loginForm.get('password')?.errors?.['minlength']
 			|| this.loginForm.get('password')?.errors?.['passwordInvalid'];

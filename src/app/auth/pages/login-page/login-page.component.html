@@ -1,4 +1,10 @@
-<div class="flex justify-content-center align-items-center h-full">
+<div class="flex flex-column justify-content-center align-items-center h-full">
+
+    <p-message *ngIf="isInvalidCredentials"
+               text="El usuario o la contraseña no son correctos"
+               severity="error"
+               styleClass="mb-2 w-30rem"/>
+
     <p-card styleClass="w-30rem">
         <div class="flex align-items-center gap-2">
             <img src="assets/logo.png" class="w-3rem" alt="logo">
@@ -20,7 +26,7 @@
                        pInputText
                        class="w-full">
                 <div *ngIf="validateField('username')" class="mt-1">
-                    <small *ngIf="isValidField('username')" class="text-red-500">
+                    <small *ngIf="isValidField('username')" class="text-red-400">
                         El usuario es obligatorio
                     </small>
                 </div>
@@ -34,9 +40,8 @@
                        pInputText
                        class="w-full">
                 <div *ngIf="validateField('password')" class="mt-1">
-                    <small *ngIf="isValidPasswordFormat" class="text-red-500">
-                        La contraseña debe tener al menos 8 caracteres y contener al menos una letra mayúscula, una
-                        minúscula y un número
+                    <small *ngIf="isValidField('password')" class="text-red-400">
+                        La constraseña es obligatoria
                     </small>
                 </div>
             </div>

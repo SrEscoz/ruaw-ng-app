@@ -23,6 +23,7 @@ import {TagModule} from 'primeng/tag';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {MessageModule} from 'primeng/message';
 import {EditorModule} from 'primeng/editor';
+import {PasswordModule} from 'primeng/password';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import {EditorModule} from 'primeng/editor';
 		TagModule,
 		SelectButtonModule,
 		MessageModule,
-		EditorModule
+		EditorModule,
+		PasswordModule
 	]
 })
 export class PrimeNgModule {
