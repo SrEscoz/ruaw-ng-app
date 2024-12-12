@@ -13,6 +13,8 @@ import {JwtPayload} from '../interfaces/token.payload';
 export class AuthService {
 
 	private invalidUser = 'INVALID_USER';
+	private adminRole = 'ROLE_ADMIN';
+
 	private baseUrl = `${environment.baseUrl}/auth`;
 	private http = inject(HttpClient);
 
@@ -32,8 +34,14 @@ export class AuthService {
 		return this.http.post<LoginResponse>(url, body)
 			.pipe(
 				tap(response => {
-					this._currentUser.set(this.decodeToken(response.token));
-					this._authStatus.set(AuthStatus.authenticated);
+					const user = this.decodeToken(response.token);
+
+					if (user.authorities.includes(this.adminRole))
+						this._authStatus.set(AuthStatus.authenticatedAdmin);
+					else
+						this._authStatus.set(AuthStatus.authenticated);
+
+					this._currentUser.set(user);
 					localStorage.setItem('access_token', response.token);
 				}),
 				map(() => true),

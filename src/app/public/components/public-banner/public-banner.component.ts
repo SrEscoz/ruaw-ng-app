@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, computed, inject} from '@angular/core';
 import {Router} from '@angular/router';
+import {AuthService} from '../../../auth/services/auth.service';
 
 @Component({
 	selector: 'public-banner',
@@ -8,7 +9,13 @@ import {Router} from '@angular/router';
 })
 export class PublicBannerComponent {
 
-	constructor(protected router: Router) { }
+	private authService = inject(AuthService);
+	protected router = inject(Router);
+
+	public user = computed(() => this.authService.currentUser);
+	public authStatus = computed(() => this.authService.authStatus);
+
+	constructor() { }
 
 	isActiveRoute(route: string): boolean {
 		return this.router.isActive(route, false);
