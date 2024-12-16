@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SpellsService} from '../../../../public/services/spells.service';
-import {MessageService} from 'primeng/api';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ClassesService} from '../../../../public/services/classes.service';
 import {ClassAdminService} from '../../../services/class-admin.service';
 import {CompleteClass} from '../../../../public/interfaces/classes.interface';
+import {ToastService} from '../../../../shared/services/toast.service';
 
 @Component({
 	selector: 'admin-add-class-page',
@@ -28,7 +28,7 @@ export class AdminAddClassPageComponent implements OnInit {
 		private classService: ClassesService,
 		private spellsService: SpellsService,
 		private adminService: ClassAdminService,
-		private messageService: MessageService,
+		private toastService: ToastService,
 		private router: Router,
 		private route: ActivatedRoute,
 	) {}
@@ -77,7 +77,7 @@ export class AdminAddClassPageComponent implements OnInit {
 					description: clazz.description,
 				});
 			} else {
-				this.showErrorToast('La clase no existe');
+				this.toastService.showErrorToast('Error', 'La clase no existe');
 				this.router.navigate(['/admin/classes']);
 			}
 		});
@@ -88,7 +88,7 @@ export class AdminAddClassPageComponent implements OnInit {
 			this.classForm.markAllAsTouched();
 			this.markAllAsDirty();
 
-			this.showErrorToast('Completa todos los campos');
+			this.toastService.showErrorToast('Error', 'Completa todos los campos');
 
 
 		} else {
@@ -100,9 +100,10 @@ export class AdminAddClassPageComponent implements OnInit {
 			operation.subscribe(spell => {
 
 				if (spell) {
-					this.showSuccessToast(this.isEditMode
-						? 'Clase actualizada con éxito'
-						: 'Clase añadida con éxito');
+					this.toastService.showSuccessToast('Éxito',
+						this.isEditMode
+							? 'Clase actualizada con éxito'
+							: 'Clase añadida con éxito');
 
 					if (saveAddOther && !this.isEditMode) {
 						this.classForm.reset();
@@ -111,7 +112,7 @@ export class AdminAddClassPageComponent implements OnInit {
 					}
 
 				} else {
-					this.showWarningToast('Ya existe una clase con ese nombre');
+					this.toastService.showWarningToast('Error', 'Ya existe una clase con ese nombre');
 				}
 			});
 		}
@@ -138,33 +139,6 @@ export class AdminAddClassPageComponent implements OnInit {
 		Object.keys(this.classForm.controls).forEach(controlName => {
 			const control = this.classForm.get(controlName);
 			control?.markAsDirty();
-		});
-	}
-
-	showWarningToast(message: string): void {
-		this.messageService.add({
-			summary: 'Error',
-			severity: 'warn',
-			detail: message,
-			life: 3000
-		});
-	}
-
-	showSuccessToast(message: string): void {
-		this.messageService.add({
-			severity: 'success',
-			summary: 'Éxito',
-			detail: message,
-			life: 3000
-		});
-	}
-
-	showErrorToast(message: string): void {
-		this.messageService.add({
-			severity: 'error',
-			summary: 'Error',
-			detail: message,
-			life: 3000
 		});
 	}
 }

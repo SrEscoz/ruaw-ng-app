@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {ConfirmationService, MessageService} from 'primeng/api';
+import {ConfirmationService} from 'primeng/api';
 import {ClassesService} from '../../../../public/services/classes.service';
 import {MinimalClass} from '../../../../public/interfaces/classes.interface';
 import {ClassAdminService} from '../../../services/class-admin.service';
+import {ToastService} from '../../../../shared/services/toast.service';
 
 @Component({
 	selector: 'app-admin-class-page',
@@ -18,7 +19,7 @@ export class AdminClassPageComponent implements OnInit {
 		private classService: ClassesService,
 		private classAdminService: ClassAdminService,
 		private router: Router,
-		private messageService: MessageService,
+		private toastService: ToastService,
 		private confirmationService: ConfirmationService
 	) {}
 
@@ -52,34 +53,16 @@ export class AdminClassPageComponent implements OnInit {
 				this.classAdminService.deleteClass(id)
 					.subscribe(response => {
 						if (response) {
-							this.showSuccessToast(`${name} ha sido elimiado`);
+							this.toastService.showSuccessToast('Éxtio', `${name} ha sido elimiado`);
 							this.loadClasses();
 						} else {
-							this.showErrorToast(`No ha sido posible eliminar ${name}`);
+							this.toastService.showErrorToast('Error', `No ha sido posible eliminar ${name}`);
 						}
 					});
 			},
 			reject: () => {
 				return;
 			}
-		});
-	}
-
-	showSuccessToast(message: string): void {
-		this.messageService.add({
-			severity: 'success',
-			summary: 'Éxito',
-			detail: message,
-			life: 3000
-		});
-	}
-
-	showErrorToast(message: string): void {
-		this.messageService.add({
-			severity: 'error',
-			summary: 'Error',
-			detail: message,
-			life: 3000
 		});
 	}
 }

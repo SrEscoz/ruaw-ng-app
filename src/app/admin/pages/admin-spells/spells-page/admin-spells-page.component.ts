@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Spell, SpellFilters, SpellResponse} from '../../../../public/interfaces/spells.interface';
 import {SpellsService} from '../../../../public/services/spells.service';
 import {SpellAdminService} from '../../../services/spell-admin.service';
-import {ConfirmationService, MessageService} from 'primeng/api';
+import {ConfirmationService} from 'primeng/api';
 import {Router} from '@angular/router';
+import {ToastService} from '../../../../shared/services/toast.service';
 
 @Component({
 	selector: 'app-admin-spells-page',
@@ -22,7 +23,7 @@ export class AdminSpellsPageComponent implements OnInit {
 		private spellsService: SpellsService,
 		private spellAdminService: SpellAdminService,
 		private router: Router,
-		private messageService: MessageService,
+		private toastService: ToastService,
 		private confirmationService: ConfirmationService
 	) { }
 
@@ -58,10 +59,10 @@ export class AdminSpellsPageComponent implements OnInit {
 				this.spellAdminService.deleteSpell(id)
 					.subscribe(response => {
 						if (response) {
-							this.showSuccessToast(`${name} ha sido elimiado`);
+							this.toastService.showSuccessToast('Éxito', `${name} ha sido elimiado`);
 							this.loadSpells();
 						} else {
-							this.showErrorToast(`No ha sido posible eliminar ${name}`);
+							this.toastService.showErrorToast('Error', `No ha sido posible eliminar ${name}`);
 						}
 					});
 			},
@@ -84,24 +85,6 @@ export class AdminSpellsPageComponent implements OnInit {
 		window.scrollTo({
 			top: 0,
 			behavior: 'smooth'
-		});
-	}
-
-	showSuccessToast(message: string): void {
-		this.messageService.add({
-			severity: 'success',
-			summary: 'Éxito',
-			detail: message,
-			life: 3000
-		});
-	}
-
-	showErrorToast(message: string): void {
-		this.messageService.add({
-			severity: 'error',
-			summary: 'Error',
-			detail: message,
-			life: 3000
 		});
 	}
 }

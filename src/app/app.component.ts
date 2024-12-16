@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {AuthService} from './auth/services/auth.service';
-import {MessageService} from 'primeng/api';
+import {ToastService} from './shared/services/toast.service';
 
 @Component({
 	selector: 'app-root',
@@ -11,13 +11,14 @@ export class AppComponent {
 	title = 'ruaw-ng-app';
 
 	private authService = inject(AuthService);
-	private messageService = inject(MessageService);
+	private toastService = inject(ToastService);
 
 	constructor() {
 		this.authService.checkStatus()
 			.subscribe(result => {
 				if (!result) {
 					this.authService.deleteToken();
+					this.toastService.showWarningToast('Sesión caducada', 'Inicia sesión de nuevo');
 				}
 			});
 	}

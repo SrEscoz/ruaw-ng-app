@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {SpellsService} from '../../../../public/services/spells.service';
 import {CheckboxChangeEvent} from 'primeng/checkbox';
-import {MessageService} from 'primeng/api';
 import {Spell} from '../../../../public/interfaces/spells.interface';
 import {SpellAdminService} from '../../../services/spell-admin.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ToastService} from '../../../../shared/services/toast.service';
 
 @Component({
 	selector: 'app-admin-add-spell-page',
@@ -28,7 +28,7 @@ export class AdminAddSpellPageComponent implements OnInit {
 		private fb: FormBuilder,
 		private spellsService: SpellsService,
 		private adminService: SpellAdminService,
-		private messageService: MessageService,
+		private toastService: ToastService,
 		private router: Router,
 		private route: ActivatedRoute,
 	) {}
@@ -102,7 +102,7 @@ export class AdminAddSpellPageComponent implements OnInit {
 					}
 				});
 			} else {
-				this.showErrorToast('El conjuro no existe');
+				this.toastService.showErrorToast('Error', 'El conjuro no existe');
 				this.router.navigate(['/admin/spells']);
 			}
 		});
@@ -134,10 +134,10 @@ export class AdminAddSpellPageComponent implements OnInit {
 			this.spellForm.markAllAsTouched();
 			this.markAllAsDirty();
 
-			this.showErrorToast('Completa todos los campos');
+			this.toastService.showErrorToast('Éxito', 'Completa todos los campos');
 
 			if (this.spellForm.get('components')?.invalid) {
-				this.showErrorToast('Elige al menos un componente');
+				this.toastService.showErrorToast('Error', 'Elige al menos un componente');
 			}
 
 		} else {
@@ -149,9 +149,8 @@ export class AdminAddSpellPageComponent implements OnInit {
 			operation.subscribe(spell => {
 
 				if (spell) {
-					this.showSuccessToast(this.isEditMode
-						? 'Conjuro actualizado con éxito'
-						: 'Conjuro añadido con éxito');
+					this.toastService.showSuccessToast('Éxito',
+						this.isEditMode ? 'Conjuro actualizado con éxito' : 'Conjuro añadido con éxito');
 
 					if (saveAddOther && !this.isEditMode) {
 						this.resetForm();
@@ -161,7 +160,7 @@ export class AdminAddSpellPageComponent implements OnInit {
 					}
 
 				} else {
-					this.showWarningToast('Ya existe un conjuro con ese nombre');
+					this.toastService.showWarningToast('Error', 'Ya existe un conjuro con ese nombre');
 				}
 			});
 		}
@@ -245,32 +244,5 @@ export class AdminAddSpellPageComponent implements OnInit {
 			return '';
 
 		return text.replace(/&nbsp;/g, ' ');
-	}
-
-	showWarningToast(message: string): void {
-		this.messageService.add({
-			summary: 'Error',
-			severity: 'warn',
-			detail: message,
-			life: 3000
-		});
-	}
-
-	showSuccessToast(message: string): void {
-		this.messageService.add({
-			severity: 'success',
-			summary: 'Éxito',
-			detail: message,
-			life: 3000
-		});
-	}
-
-	showErrorToast(message: string): void {
-		this.messageService.add({
-			severity: 'error',
-			summary: 'Error',
-			detail: message,
-			life: 3000
-		});
 	}
 }

@@ -2,7 +2,7 @@ import {Component, inject} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
-import {MessageService} from 'primeng/api';
+import {ToastService} from '../../../shared/services/toast.service';
 
 @Component({
 	selector: 'auth-login-page',
@@ -17,7 +17,7 @@ export class LoginPageComponent {
 
 	private formBuilder = inject(FormBuilder);
 	private authService = inject(AuthService);
-	private messageService = inject(MessageService);
+	private toastService = inject(ToastService);
 	private router = inject(Router);
 
 	public isInvalidCredentials = false;
@@ -41,7 +41,7 @@ export class LoginPageComponent {
 		this.authService.login(email, password)
 			.subscribe({
 					next: () => {
-						this.showSuccessToast('¡Bienvenido de nuevo!');
+						this.toastService.showSuccessToast('Login', '¡Bienvenido de nuevo!');
 						this.router.navigateByUrl('/spells');
 					},
 					error: () => this.isInvalidCredentials = true
@@ -64,14 +64,5 @@ export class LoginPageComponent {
 
 	isValidField(field: string): boolean {
 		return this.loginForm.get(field)?.errors?.['required'];
-	}
-
-	showSuccessToast(message: string): void {
-		this.messageService.add({
-			summary: 'Login',
-			severity: 'success',
-			detail: message,
-			life: 2500
-		});
 	}
 }

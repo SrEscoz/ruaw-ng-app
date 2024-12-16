@@ -1,8 +1,8 @@
 import {Component, inject} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
-import {MessageService} from 'primeng/api';
 import {Router} from '@angular/router';
+import {ToastService} from '../../../shared/services/toast.service';
 
 @Component({
 	selector: 'auth-signin-page',
@@ -17,7 +17,7 @@ export class RegisterPageComponent {
 
 	private formBuilder = inject(FormBuilder);
 	private authService = inject(AuthService);
-	private messageService = inject(MessageService);
+	private toastService = inject(ToastService);
 	private router = inject(Router);
 
 	public isInvalidParams = false;
@@ -41,7 +41,7 @@ export class RegisterPageComponent {
 		this.authService.register(username, email, password)
 			.subscribe({
 					next: () => {
-						this.showSuccessToast('¡Registro completado!');
+						this.toastService.showSuccessToast('Registro', '¡Registro completado!');
 						this.router.navigateByUrl('/spells');
 					},
 					error: () => this.isInvalidParams = true
@@ -89,14 +89,5 @@ export class RegisterPageComponent {
 		console.log(this.registerForm.get('email'));
 
 		return this.registerForm.get('email')?.errors?.['email'];
-	}
-
-	showSuccessToast(message: string): void {
-		this.messageService.add({
-			summary: 'Registro',
-			severity: 'success',
-			detail: message,
-			life: 2500
-		});
 	}
 }
