@@ -1,33 +1,75 @@
-<div class="flex justify-content-center align-items-center h-full">
-    <p-card styleClass="w-30rem">
-        <div class="flex align-items-center gap-2">
-            <img src="assets/logo.png" class="w-3rem" alt="logo">
-            <h1>
-                RUA<span class="text-primary">W</span>?
-            </h1>
-        </div>
-        <p-divider/>
+<div class="flex flex-column justify-content-center align-items-center h-full">
 
-        <h3>Nuevo registro</h3>
+    <div class="w-12 md:w-8 lg:w-6 xl:w-4 h-90 md:h-fit">
+        <p-message *ngIf="isInvalidParams"
+                   text="El correo o el usuario ya esta registrado"
+                   severity="error"
+                   styleClass="mb-2 w-full"/>
 
-        <div class="field">
-            <label for="username">Usuario</label>
-            <input id="username" type="text" pInputText class="w-full">
-        </div>
-        <div class="field">
-            <label for="email">Email</label>
-            <input id="email" type="text" pInputText class="w-full">
-        </div>
-        <div class="field">
-            <label for="password">Contraseña</label>
-            <input id="password" type="text" pInputText class="w-full">
-        </div>
+        <p-card styleClass="h-full">
+            <div class="flex align-items-center gap-2">
+                <img src="assets/logo.png" class="w-3rem" alt="logo">
+                <h1>
+                    RUA<span class="text-primary">W</span>?
+                </h1>
+            </div>
+            <p-divider/>
 
-        <p-button label="Registrarse" severity="primary" styleClass="w-full" [disabled]="true"/>
+            <h3>Crear una cuenta</h3>
 
-        <div class="flex justify-content-end mt-5 mb-2">
-            <a routerLink="/auth/login" class="text-teal-300">¿Ya tienes cuenta?</a>
-        </div>
+            <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
 
-    </p-card>
+                <div class="field">
+                    <label for="username">Nombre de usuario</label>
+                    <input id="username"
+                           type="text"
+                           formControlName="username"
+                           pInputText
+                           class="w-full">
+                    <div *ngIf="validateField('username')" class="mt-1">
+                        <small *ngIf="isValidField('username')" class="text-red-400">
+                            El nombre de usuario es obligatorio
+                        </small>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input id="email"
+                           type="email"
+                           formControlName="email"
+                           pInputText
+                           class="w-full">
+                    <div *ngIf="validateField('email')" class="mt-1">
+                        <small *ngIf="isValidEmail" class="text-red-400">
+                            El email no tiene un formato válido
+                        </small>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="password">Contraseña</label>
+                    <input id="password"
+                           type="password"
+                           formControlName="password"
+                           pInputText
+                           class="w-full">
+                    <div *ngIf="validateField('password')" class="mt-1">
+                        <small *ngIf="isValidPasswordFormat" class="text-red-400">
+                            El formato de la contraseña no es válido, 8 caracteres mínimo y al menos una minúscula, una
+                            mayúscula y un número
+                        </small>
+                    </div>
+                </div>
+
+                <p-button label="Crear cuenta" type="submit" severity="success" styleClass="w-full"/>
+            </form>
+
+            <div class="flex justify-content-between mt-5 mb-2">
+                <a routerLink="/" class="text-color-secondary">Atrás</a>
+                <a routerLink="/auth/login" class="text-teal-300">¿Ya tienes cuenta?</a>
+            </div>
+
+        </p-card>
+    </div>
 </div>

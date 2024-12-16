@@ -33,23 +33,39 @@ export class AuthService {
 
 		return this.http.post<LoginResponse>(url, body)
 			.pipe(
-				tap(response => {
-					const user = this.decodeToken(response.token);
-
-					if (user.authorities.includes(this.adminRole))
-						this._authStatus.set(AuthStatus.authenticatedAdmin);
-					else
-						this._authStatus.set(AuthStatus.authenticated);
-
-					this._currentUser.set(user);
-					localStorage.setItem('access_token', response.token);
-				}),
+				tap(response => this.saveCurrentUser(response)),
 				map(() => true),
 				catchError(() => {
 					return throwError(() => 'Error al validar las credenciales');
 				})
 			);
 
+	}
+
+	register(username: string, email: string, password: string): Observable<boolean> {
+		const url = `${this.baseUrl}/register`;
+		const body = {username, email, password};
+
+		return this.http.post<LoginResponse>(url, body)
+			.pipe(
+				tap(response => this.saveCurrentUser(response)),
+				map(() => true),
+				catchError(() => {
+					return throwError(() => 'Error al validar las credenciales');
+				})
+			);
+	}
+
+	private saveCurrentUser(response: LoginResponse): void {
+		const user = this.decodeToken(response.token);
+
+		if (user.authorities.includes(this.adminRole))
+			this._authStatus.set(AuthStatus.authenticatedAdmin);
+		else
+			this._authStatus.set(AuthStatus.authenticated);
+
+		this._currentUser.set(user);
+		localStorage.setItem('access_token', response.token);
 	}
 
 	private decodeToken(token: string): User {

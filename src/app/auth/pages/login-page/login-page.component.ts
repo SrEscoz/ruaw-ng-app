@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {MessageService} from 'primeng/api';
@@ -7,7 +7,11 @@ import {MessageService} from 'primeng/api';
 @Component({
 	selector: 'auth-login-page',
 	templateUrl: './login-page.component.html',
-	styles: ``
+	styles: `
+        .h-90 {
+            height: 90vh;
+        }
+	`
 })
 export class LoginPageComponent {
 
@@ -37,7 +41,7 @@ export class LoginPageComponent {
 		this.authService.login(email, password)
 			.subscribe({
 					next: () => {
-						this.showWarningToast('¡Bienvenido de nuevo!');
+						this.showSuccessToast('¡Bienvenido de nuevo!');
 						this.router.navigateByUrl('/spells');
 					},
 					error: () => this.isInvalidCredentials = true
@@ -52,21 +56,6 @@ export class LoginPageComponent {
 		});
 	}
 
-	// TODO esto no va aquí xd
-	passwordValidator() {
-		return (control: AbstractControl): ValidationErrors | null => {
-			const value = control.value;
-
-			if (!value) {
-				return null;
-			}
-
-			const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).*$/;
-			const valid = passwordRegex.test(value);
-			return valid ? null : {passwordInvalid: true};
-		};
-	}
-
 	validateField(field: string): boolean | undefined {
 		return this.loginForm.get(field)?.invalid
 			&& (this.loginForm.get(field)?.dirty
@@ -77,13 +66,7 @@ export class LoginPageComponent {
 		return this.loginForm.get(field)?.errors?.['required'];
 	}
 
-	// TODO esto no va aquí xd
-	isValidPasswordFormat(): boolean {
-		return this.loginForm.get('password')?.errors?.['minlength']
-			|| this.loginForm.get('password')?.errors?.['passwordInvalid'];
-	}
-
-	showWarningToast(message: string): void {
+	showSuccessToast(message: string): void {
 		this.messageService.add({
 			summary: 'Login',
 			severity: 'success',
