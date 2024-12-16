@@ -1,7 +1,7 @@
 import {computed, inject, Injectable, signal} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {catchError, map, Observable, tap, throwError} from 'rxjs';
+import {catchError, map, Observable, of, tap, throwError} from 'rxjs';
 import {LoginResponse, User} from '../interfaces/user.interface';
 import {AuthStatus} from '../interfaces/auth-status.enum';
 import {jwtDecode} from 'jwt-decode';
@@ -54,6 +54,24 @@ export class AuthService {
 					return throwError(() => 'Error al validar las credenciales');
 				})
 			);
+	}
+
+	checkStatus(): Observable<boolean> {
+		const url = `${this.baseUrl}/refresh-token`;
+		const token = localStorage.getItem('access_token');
+
+		if (!token) return of(false);
+
+		return this.http.post<LoginResponse>(url, {token})
+			.pipe(
+				tap(response => this.saveCurrentUser(response)),
+				map(() => true),
+				catchError(() => of(false))
+			);
+	}
+
+	deleteToken(): void {
+		localStorage.removeItem('access_token');
 	}
 
 	private saveCurrentUser(response: LoginResponse): void {
