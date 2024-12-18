@@ -35,9 +35,11 @@ export class SpellFiltersComponent implements OnInit {
 			.subscribe(schools => {this.schoolsItems = schools;});
 
 		this.route.queryParams.subscribe(params => {
+			let level = params['level'] == 0 ? 'Truco' : params['level'];
+
 			this.nameFilter = params['name'] || undefined;
 			this.schoolFilter = params['school'] || undefined;
-			this.levelFilter = params['level'] || undefined;
+			this.levelFilter = level || undefined;
 			this.classFilter = params['class'] || undefined;
 		});
 	}

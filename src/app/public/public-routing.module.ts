@@ -10,9 +10,9 @@ const routes: Routes = [
 		path: '',
 		component: PublicLayoutPageComponent,
 		children: [
-			{path: 'home', component: HomePageComponent},
-			{path: 'spells', component: SpellsPageComponent},
-			{path: 'classes', component: ClassesPageComponent},
+			{path: 'home', component: HomePageComponent, data: {breadcrumb: 'Inicio'}},
+			{path: 'spells', component: SpellsPageComponent, data: {breadcrumb: 'Conjuros'}},
+			{path: 'classes', component: ClassesPageComponent, data: {breadcrumb: 'Clases'}},
 			{path: '**', redirectTo: 'spells'},
 		]
 	}
