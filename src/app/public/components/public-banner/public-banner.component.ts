@@ -2,6 +2,7 @@ import {Component, inject} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../../auth/services/auth.service';
 import {AuthStatus} from '../../../auth/interfaces/auth-status.enum';
+import {ToastService} from '../../../shared/services/toast.service';
 
 @Component({
 	selector: 'public-banner',
@@ -11,6 +12,7 @@ import {AuthStatus} from '../../../auth/interfaces/auth-status.enum';
 export class PublicBannerComponent {
 
 	private authService = inject(AuthService);
+	private toastService = inject(ToastService);
 	protected router = inject(Router);
 	protected readonly AuthStatus = AuthStatus;
 
@@ -25,6 +27,7 @@ export class PublicBannerComponent {
 	}
 
 	logout(): void {
-
+		this.authService.logout();
+		this.toastService.showSuccessToast('Logout', '¡Hasta la vista!');
 	}
 }
