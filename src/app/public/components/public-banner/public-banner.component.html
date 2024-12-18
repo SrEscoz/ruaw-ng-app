@@ -1,21 +1,21 @@
 <div class="layout-bar shadow-3">
     <!-- Barra superior -->
-    <div class="bar-content flex align-items-center justify-content-between px-4 lg:px-6">
+    <div class="bar-content flex align-items-center justify-content-between mx-3 md:mx-6">
         <div class="flex align-items-center gap-2 cursor-pointer"
              (click)="router.navigate(['/' ])">
 
             <img src="assets/logo.png" class="w-2rem" alt="logo">
-            <h3>
+            <h2>
                 RUA<span class="text-primary">W</span>?
-            </h3>
+            </h2>
         </div>
         <div class="flex gap-2">
             <p-button *ngIf="authStatus === AuthStatus.authenticatedAdmin"
                       icon="pi pi-wrench"
                       label="Admin"
-                      [text]="true"
                       [outlined]="true"
-                      severity="danger"
+                      size="small"
+                      severity="help"
                       (click)="router.navigate(['/admin'])"/>
 
             <p-button
@@ -23,7 +23,17 @@
                     icon="pi pi-sign-in"
                     [text]="true"
                     [outlined]="true"
+                    size="small"
                     (click)="router.navigate(['/auth/login'])"/>
+
+            <p-button
+                    *ngIf="authStatus === AuthStatus.authenticatedAdmin || authStatus === AuthStatus.authenticated"
+                    icon="pi pi-sign-out"
+                    [text]="true"
+                    [outlined]="true"
+                    size="small"
+                    severity="danger"
+                    (click)="logout()"/>
         </div>
     </div>
     <!-- Barra de botones -->

@@ -23,4 +23,8 @@ export class PublicBannerComponent {
 	get authStatus(): AuthStatus {
 		return this.authService.authStatus();
 	}
+
+	logout(): void {
+
+	}
 }
